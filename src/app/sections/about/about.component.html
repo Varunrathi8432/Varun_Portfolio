@@ -1,0 +1,60 @@
+<section id="about" class="about section" appInView [inViewThreshold]="0.15" (inView)="onVisible()">
+  <div class="container">
+    <div class="section-header" [class.visible]="isVisible()">
+      <span class="section-label">// About Me</span>
+      <h2 class="section-title">Get To Know Me</h2>
+      <p class="section-subtitle">A passionate developer dedicated to crafting exceptional digital experiences</p>
+    </div>
+
+    <div class="about__grid" [class.visible]="isVisible()">
+      <div class="about__info">
+        <div class="about__terminal glass-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-title">about-me.sh</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="prompt">$</span> cat about.txt</p>
+            <p class="terminal-output">
+              I started my career in December 2024 as a Junior Developer at Zapium.
+              Within 6 months I was promoted to Angular Developer, building real features
+              for production applications.
+            </p>
+            <p class="terminal-output">
+              I focus entirely on frontend — Angular, TypeScript, SCSS, and clean UI.
+              Every day I push to grow, ship better code, and level up my skills.
+            </p>
+            <p><span class="prompt">$</span> <span class="cursor-blink">_</span></p>
+          </div>
+        </div>
+
+        <div class="about__stats">
+          @for (stat of dataService.stats; track stat.label) {
+            <div class="stat glass-card">
+              <span class="stat__number gradient-text" [appCountUp]="stat.value" [countSuffix]="stat.suffix"></span>
+              <span class="stat__label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="about__strengths">
+        @for (strength of dataService.strengths; track strength.title) {
+          <div class="strength glass-card">
+            <div class="strength__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path [attr.d]="strength.icon"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="strength__title">{{ strength.title }}</h4>
+              <p class="strength__desc">{{ strength.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

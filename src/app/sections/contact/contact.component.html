@@ -1,0 +1,115 @@
+<section id="contact" class="contact section" appInView [inViewThreshold]="0.1" (inView)="onVisible()">
+  <div class="container">
+    <div class="section-header" [class.visible]="isVisible()">
+      <span class="section-label">// Contact</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Have a project in mind? Let's work together to build something great.</p>
+    </div>
+
+    <div class="contact__grid" [class.visible]="isVisible()">
+      <div class="contact__info">
+        <div class="contact__card glass-card">
+          <div class="contact__card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:hello&#64;developer.com">hello&#64;developer.com</a>
+          </div>
+        </div>
+
+        <div class="contact__card glass-card">
+          <div class="contact__card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Location</h4>
+            <p>Open to Remote & Relocation</p>
+          </div>
+        </div>
+
+        <div class="contact__social">
+          <p>Find me on</p>
+          <div class="social-row">
+            @for (social of dataService.socialLinks; track social.name) {
+              <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link" [attr.aria-label]="social.name">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path [attr.d]="social.icon"/>
+                </svg>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <form class="contact__form glass-card" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Your name"
+            [ngClass]="{ invalid: contactForm.get('name')?.invalid && contactForm.get('name')?.touched }">
+          @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+            <span class="error">Name is required</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="your.email&#64;example.com"
+            [ngClass]="{ invalid: contactForm.get('email')?.invalid && contactForm.get('email')?.touched }">
+          @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+            <span class="error">Please enter a valid email</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input
+            id="subject"
+            type="text"
+            formControlName="subject"
+            placeholder="What's this about?">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="5"
+            placeholder="Tell me about your project..."
+            [ngClass]="{ invalid: contactForm.get('message')?.invalid && contactForm.get('message')?.touched }">
+          </textarea>
+          @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+            <span class="error">Message is required</span>
+          }
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-btn" [disabled]="submitted()">
+          @if (submitted()) {
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Message Sent!
+          } @else {
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Send Message
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

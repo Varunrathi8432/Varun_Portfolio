@@ -1,0 +1,46 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="footer__logo" (click)="scrollService.scrollTo('hero')">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">Dev</span>
+          <span class="logo-dot">.</span>
+          <span class="logo-text">Portfolio</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer__tagline">Building exceptional digital experiences with Angular and modern web technologies.</p>
+      </div>
+
+      <div class="footer__links">
+        <h4>Quick Links</h4>
+        <ul>
+          @for (link of dataService.navLinks; track link.sectionId) {
+            <li><a (click)="scrollService.scrollTo(link.sectionId)">{{ link.label }}</a></li>
+          }
+          <li><a routerLink="/blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__social">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          @for (social of dataService.socialLinks; track social.name) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-icon" [attr.aria-label]="social.name">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path [attr.d]="social.icon"/>
+              </svg>
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ currentYear }} Dev.Portfolio. Built with Angular.</p>
+      <p class="footer__credit">Designed & developed with passion</p>
+    </div>
+  </div>
+</footer>

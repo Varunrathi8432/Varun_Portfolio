@@ -1,0 +1,17 @@
+@if (isLoading()) {
+  <div class="preloader" @fadeOut>
+    <div class="preloader__content">
+      <div class="preloader__logo">
+        <span class="bracket">&lt;</span>
+        <span class="text">Dev</span>
+        <span class="dot">.</span>
+        <span class="text">Portfolio</span>
+        <span class="bracket">/&gt;</span>
+      </div>
+      <div class="preloader__bar">
+        <div class="preloader__fill" [style.width.%]="progress()"></div>
+      </div>
+      <span class="preloader__percent">{{ progress() }}%</span>
+    </div>
+  </div>
+}

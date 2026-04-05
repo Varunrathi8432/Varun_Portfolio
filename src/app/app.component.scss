@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+}
+
+.route-container {
+  position: relative;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+.bg-gradient-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--accent-primary);
+  top: -200px;
+  right: -200px;
+}
+
+.bg-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-secondary);
+  bottom: 20%;
+  left: -150px;
+}
+
+.bg-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: #ff6b9d;
+  top: 50%;
+  right: -100px;
+}

@@ -1,0 +1,42 @@
+<section id="skills" class="skills section" appInView [inViewThreshold]="0.08" (inView)="onVisible()">
+  <div class="container">
+    <div class="section-header" [class.visible]="isVisible()">
+      <span class="section-label">// Skills</span>
+      <h2 class="section-title">My Tech Stack</h2>
+      <p class="section-subtitle">Technologies and tools I use to bring ideas to life</p>
+    </div>
+
+    <div class="skills__categories" [class.visible]="isVisible()">
+      @for (category of dataService.skillCategories; track category.title; let i = $index) {
+        <div class="skills__category glass-card" [style.transition-delay]="(i * 0.15) + 's'">
+          <div class="category__header">
+            <div class="category__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path [attr.d]="category.icon"/>
+              </svg>
+            </div>
+            <h3 class="category__title">{{ category.title }}</h3>
+          </div>
+
+          <div class="category__skills">
+            @for (skill of category.skills; track skill.name; let j = $index) {
+              <div class="skill">
+                <div class="skill__header">
+                  <span class="skill__name">{{ skill.name }}</span>
+                  <span class="skill__level">{{ skill.level }}%</span>
+                </div>
+                <div class="skill__bar">
+                  <div
+                    class="skill__progress"
+                    [style.width.%]="isVisible() ? skill.level : 0"
+                    [style.transition-delay]="(i * 0.15 + j * 0.08) + 's'">
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

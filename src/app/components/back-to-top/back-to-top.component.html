@@ -1,0 +1,32 @@
+@if (scrollService.isScrolled()) {
+  <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top" @fadeScale>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+    <svg class="progress-ring" width="48" height="48" viewBox="0 0 48 48">
+      <circle
+        cx="24" cy="24" r="21"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-opacity="0.15"
+      />
+      <circle
+        cx="24" cy="24" r="21"
+        fill="none"
+        stroke="url(#progress-gradient)"
+        stroke-width="2"
+        stroke-linecap="round"
+        [style.stroke-dasharray]="'132'"
+        [style.stroke-dashoffset]="132 - (132 * scrollService.scrollProgress() / 100)"
+        transform="rotate(-90 24 24)"
+      />
+      <defs>
+        <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="var(--accent-primary)"/>
+          <stop offset="100%" stop-color="var(--accent-secondary)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </button>
+}

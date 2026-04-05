@@ -1,0 +1,120 @@
+.section-header, .blog-preview__grid, .blog-preview__cta {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.35, 0, 0.25, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blog-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  transition-delay: 0.2s;
+
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+}
+
+.preview-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.35, 0, 0.25, 1);
+
+  .visible & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-6px) !important;
+
+    .preview-card__arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .preview-card__color-bar {
+      height: 6px;
+    }
+  }
+}
+
+.preview-card__color-bar {
+  height: 4px;
+  background: var(--accent-gradient);
+  transition: height var(--transition-base);
+}
+
+.preview-card__content {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tag--sm {
+  font-size: 0.7rem;
+  padding: 2px 10px;
+}
+
+.preview-card__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.preview-card__excerpt {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.preview-card__footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.preview-card__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  color: var(--accent-primary);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all var(--transition-base);
+  border-top: 1px solid var(--border-glass);
+}
+
+.blog-preview__cta {
+  text-align: center;
+  margin-top: 48px;
+  transition-delay: 0.4s;
+}

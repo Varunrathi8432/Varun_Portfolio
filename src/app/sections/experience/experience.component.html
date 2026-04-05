@@ -1,0 +1,59 @@
+<section id="experience" class="experience section" appInView [inViewThreshold]="0.1" (inView)="onVisible()">
+  <div class="container">
+    <div class="section-header" [class.visible]="isVisible()">
+      <span class="section-label">// Experience</span>
+      <h2 class="section-title">Work History</h2>
+      <p class="section-subtitle">My professional journey and key accomplishments</p>
+    </div>
+
+    <div class="timeline" [class.visible]="isVisible()">
+      <div class="timeline__line"></div>
+
+      @for (exp of dataService.experiences; track exp.company; let i = $index) {
+        <div class="timeline__item" [class.right]="i % 2 !== 0" [style.transition-delay]="(i * 0.2) + 's'">
+          <div class="timeline__dot">
+            <div class="dot-inner"></div>
+          </div>
+
+          <div class="timeline__card glass-card">
+            <div class="timeline__period">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              {{ exp.period }}
+            </div>
+            <h3 class="timeline__role">{{ exp.role }}</h3>
+            @if (exp.companyUrl) {
+              <a class="timeline__company gradient-text" [href]="exp.companyUrl" target="_blank" rel="noopener noreferrer">
+                {{ exp.company }}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+            } @else {
+              <p class="timeline__company gradient-text">{{ exp.company }}</p>
+            }
+            <p class="timeline__desc">{{ exp.description }}</p>
+
+            <ul class="timeline__achievements">
+              @for (achievement of exp.achievements; track achievement) {
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {{ achievement }}
+                </li>
+              }
+            </ul>
+
+            <div class="timeline__tech">
+              @for (tech of exp.technologies; track tech) {
+                <span class="tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

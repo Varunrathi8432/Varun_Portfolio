@@ -1,0 +1,15 @@
+<app-preloader />
+<app-cursor-follower />
+<app-scroll-progress />
+<app-navbar />
+<main [@pageLoad]>
+  <div class="route-container" [@routeAnimation]="getRouteAnimationData(outlet)">
+    <router-outlet #outlet="outlet" />
+  </div>
+</main>
+<app-footer />
+<app-back-to-top />
+
+<div class="bg-gradient-orb bg-orb-1"></div>
+<div class="bg-gradient-orb bg-orb-2"></div>
+<div class="bg-gradient-orb bg-orb-3"></div>

@@ -1,0 +1,15 @@
+@if (!isTouchDevice()) {
+  <div
+    class="cursor"
+    [class.visible]="isVisible()"
+    [class.pointer]="isPointer()"
+    [style.left.px]="x()"
+    [style.top.px]="y()">
+  </div>
+  <div
+    class="cursor-dot"
+    [class.visible]="isVisible()"
+    [style.left.px]="x()"
+    [style.top.px]="y()">
+  </div>
+}
