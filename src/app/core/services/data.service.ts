@@ -249,9 +249,9 @@ export class DataService {
       companyUrl: "https://www.zapium.com",
       period: "Jun 2025 - Present",
       description:
-        "Promoted to Angular Developer after demonstrating growth and consistent delivery. Taking on more ownership of features and UI development.",
+        "Leading frontend development with a focus on scalable Angular architecture and polished UI delivery. Building production-ready features with strong emphasis on performance and clean code.",
       achievements: [
-        "Promoted from Junior Developer within 6 months based on performance",
+        "Took full ownership of frontend features from design handoff to production deployment",
         "Developed and delivered multiple Angular features independently",
         "Improved component reusability by building shared UI modules",
         "Collaborated closely with designers to implement pixel-perfect responsive layouts",
@@ -271,7 +271,7 @@ export class DataService {
       companyUrl: "https://www.zapium.com",
       period: "Dec 2024 - Jun 2025 · 6 months",
       description:
-        "Started my professional career as a Junior Developer, learning the development workflow and building Angular components as part of a team.",
+        "Began professional development journey, rapidly acquiring hands-on experience with Angular, TypeScript, and agile workflows while contributing to real-world production applications.",
       achievements: [
         "Built Angular components and pages for client-facing web applications",
         "Learned reactive forms, component lifecycle, and Angular routing in production",
@@ -286,7 +286,7 @@ export class DataService {
     {
       name: "Rahul Sharma",
       role: "Senior Developer",
-      company: "Zapium",
+      company: "X Company",
       avatar: "RS",
       text: "Varun picks up new concepts incredibly fast. Within months he was building production features independently. His attention to UI detail and clean code practices are impressive for someone at his experience level.",
       rating: 5,
@@ -294,7 +294,7 @@ export class DataService {
     {
       name: "Priya Patel",
       role: "UI/UX Designer",
-      company: "Zapium",
+      company: "Y Company",
       avatar: "PP",
       text: "Working with Varun is a pleasure. He translates designs into pixel-perfect implementations and always suggests improvements for better user experience. He truly cares about the end product.",
       rating: 5,
@@ -302,9 +302,9 @@ export class DataService {
     {
       name: "Amit Kumar",
       role: "Team Lead",
-      company: "Zapium",
+      company: "Z Company",
       avatar: "AK",
-      text: "Varun's growth trajectory has been remarkable. He went from learning Angular basics to delivering complex features with minimal guidance. His promotion was well-deserved and the team values his contributions.",
+      text: "Varun's growth trajectory has been remarkable. He went from learning Angular basics to delivering complex features with minimal guidance. His dedication and consistency make him a valuable asset to any team.",
       rating: 5,
     },
   ];

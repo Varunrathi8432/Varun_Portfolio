@@ -17,9 +17,9 @@
 
 ## About Me
 
-I'm a **Frontend Developer** specializing in **Angular** with 1+ year of professional experience at [Zapium](https://www.zapium.com). I was promoted from Junior Developer to Angular Developer within 6 months — a testament to my fast learning and dedication to writing clean, production-ready code.
+I'm a **Frontend Developer** specializing in **Angular** with 1+ year of professional experience building modern, responsive web applications. I focus on clean architecture, performant UIs, and translating complex requirements into intuitive user experiences.
 
-I build responsive, performant, and visually polished web applications. This portfolio is itself a demonstration of those skills.
+This portfolio is itself a demonstration of those skills — built with Angular 19, Signals, and a strong attention to detail.
 
 ---
 
@@ -30,7 +30,7 @@ I build responsive, performant, and visually polished web applications. This por
 | **Experience**     | 1+ Year Professional                   |
 | **Projects Built** | 6                                      |
 | **Blog Articles**  | 4 Published                            |
-| **Promotion**      | Junior → Angular Developer in 6 months |
+| **Growth**         | Junior → Angular Developer in 6 months |
 
 ---
 
@@ -73,7 +73,7 @@ I build responsive, performant, and visually polished web applications. This por
 | **About**        | Professional summary with animated stats          |
 | **Skills**       | Categorized skill bars (Frontend, Angular, Tools) |
 | **Projects**     | 6 projects with filtering and detail pages        |
-| **Experience**   | Professional timeline at Zapium                   |
+| **Experience**   | Professional timeline with role progression       |
 | **Testimonials** | Colleague endorsements                            |
 | **Blog**         | Technical articles on Angular topics              |
 | **Contact**      | Reactive contact form                             |
@@ -173,7 +173,7 @@ I write about modern Angular development:
 
 ## What Sets Me Apart
 
-- **Rapid Growth** — Promoted within 6 months of starting my professional career
+- **Rapid Growth** — Progressed from Junior Developer to Angular Developer within 6 months
 - **Attention to Detail** — Pixel-perfect implementations with smooth micro-interactions
 - **Modern Stack** — Building with Angular 19, Signals, and standalone components
 - **Clean Code** — Follows Angular best practices with typed interfaces and separation of concerns
