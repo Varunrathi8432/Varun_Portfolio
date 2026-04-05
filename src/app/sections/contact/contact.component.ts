@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { DataService } from '../../core/services/data.service';
+import { EmailService } from '../../core/services/email.service';
 import { InViewDirective } from '../../core/directives/in-view.directive';
 
 @Component({
@@ -14,11 +15,14 @@ import { InViewDirective } from '../../core/directives/in-view.directive';
 export class ContactComponent {
   isVisible = signal(false);
   submitted = signal(false);
+  sending = signal(false);
+  error = signal<string | null>(null);
   contactForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     public dataService: DataService,
+    private emailService: EmailService,
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -33,14 +37,24 @@ export class ContactComponent {
   }
 
   onSubmit(): void {
-    if (this.contactForm.valid) {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    this.sending.set(true);
+    this.error.set(null);
+
+    this.emailService.sendContactEmail(this.contactForm.value).then(() => {
+      this.sending.set(false);
       this.submitted.set(true);
       setTimeout(() => {
         this.submitted.set(false);
         this.contactForm.reset();
       }, 3000);
-    } else {
-      this.contactForm.markAllAsTouched();
-    }
+    }).catch(() => {
+      this.sending.set(false);
+      this.error.set('Failed to send message. Please try again.');
+    });
   }
 }
