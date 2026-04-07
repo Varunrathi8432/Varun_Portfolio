@@ -21,7 +21,7 @@ export class HeroComponent implements OnInit, OnDestroy {
     duration: 4 + Math.random() * 6,
   }));
 
-  private roles = ['Angular Developer', 'Frontend Engineer', 'TypeScript Developer', 'UI/UX Enthusiast'];
+  private roles = ['Frontend Developer', 'Frontend Engineer', 'TypeScript Developer', 'UI/UX Enthusiast'];
   private roleIndex = 0;
   private charIndex = 0;
   private isDeleting = false;

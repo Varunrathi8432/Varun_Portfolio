@@ -1,6 +1,6 @@
 <div align="center">
 
-# Varun Rathi — Angular Developer Portfolio
+# Varun Rathi — Frontend Developer Portfolio
 
 **A modern, animated portfolio built with Angular 19 to showcase my frontend development skills.**
 
@@ -30,7 +30,7 @@ This portfolio is itself a demonstration of those skills — built with Angular 
 | **Experience**     | 1+ Year Professional                   |
 | **Projects Built** | 6                                      |
 | **Blog Articles**  | 4 Published                            |
-| **Growth**         | Junior → Angular Developer in 6 months |
+| **Growth**         | Junior → Frontend Developer in 6 months |
 
 ---
 
@@ -173,7 +173,7 @@ I write about modern Angular development:
 
 ## What Sets Me Apart
 
-- **Rapid Growth** — Progressed from Junior Developer to Angular Developer within 6 months
+- **Rapid Growth** — Progressed from Junior Developer to Frontend Developer within 6 months
 - **Attention to Detail** — Pixel-perfect implementations with smooth micro-interactions
 - **Modern Stack** — Building with Angular 19, Signals, and standalone components
 - **Clean Code** — Follows Angular best practices with typed interfaces and separation of concerns
