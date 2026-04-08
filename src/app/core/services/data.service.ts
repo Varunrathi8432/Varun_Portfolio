@@ -121,7 +121,8 @@ export class DataService {
         "This portfolio website itself — built with Angular 19, standalone components, SCSS animations, dark/light mode, scroll-reveal effects, and fully responsive layout.",
       longDescription:
         "A modern developer portfolio built entirely with Angular 19 using standalone components architecture. Features include a custom theming system with dark/light mode persistence, intersection observer-based scroll animations, CSS glassmorphism effects, a typing animation hero section, reactive contact form with validation, and fully responsive design across all breakpoints. The project demonstrates clean component architecture, signal-based state management, and SCSS custom properties for theming.",
-      image: "",
+      image: "assets/projects/portfolio-thumb.svg",
+      overviewImage: "assets/projects/portfolio-overview.svg",
       tags: ["Angular", "TypeScript", "SCSS", "Angular Animations"],
       githubUrl: "https://github.com/Varunrathi8432/Varun_Portfolio",
       liveUrl: "https://example.com",

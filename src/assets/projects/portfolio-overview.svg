@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a12"/>
+      <stop offset="100%" style="stop-color:#0d0d1a"/>
+    </linearGradient>
+    <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="8%" cy="88%" r="40%">
+      <stop offset="0%" style="stop-color:#00b894;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#00b894;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="92%" cy="82%" r="38%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.22"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#glowLeft)"/>
+  <rect width="1200" height="750" fill="url(#glowRight)"/>
+
+  <!-- ===== NAVBAR ===== -->
+  <rect x="0" y="0" width="1200" height="60" fill="#0a0a12" opacity="0.97"/>
+  <rect x="0" y="60" width="1200" height="1" fill="#1f2937"/>
+  <!-- Logo -->
+  <text x="36" y="38" font-family="monospace" font-size="16" font-weight="700" fill="#f1c40f">&lt;</text>
+  <text x="48" y="38" font-family="monospace" font-size="16" font-weight="700" fill="white">Dev.</text>
+  <text x="97" y="38" font-family="monospace" font-size="16" font-weight="700" fill="white">Portfolio</text>
+  <text x="178" y="38" font-family="monospace" font-size="16" font-weight="700" fill="#f1c40f">/&gt;</text>
+  <!-- Home pill -->
+  <rect x="380" y="18" width="58" height="24" rx="12" fill="url(#btnGrad)" opacity="0.9"/>
+  <text x="409" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="white" text-anchor="middle">Home</text>
+  <!-- Nav -->
+  <text x="452" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">About</text>
+  <text x="506" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">Skills</text>
+  <text x="556" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">Projects</text>
+  <text x="621" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">Experience</text>
+  <text x="706" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">Testimonials</text>
+  <text x="800" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">Contact</text>
+  <!-- Blog -->
+  <text x="860" y="34" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9ca3af">📖 Blog</text>
+  <!-- Theme toggle -->
+  <circle cx="1150" cy="30" r="16" fill="#1a1a2e" stroke="#4b5563" stroke-width="1"/>
+  <text x="1150" y="35" font-family="monospace" font-size="14" fill="#f9fafb" text-anchor="middle">☀</text>
+
+  <!-- ===== HERO LEFT ===== -->
+  <!-- "Hello, I'm" -->
+  <line x1="36" y1="120" x2="82" y2="120" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="90" y="124" font-family="monospace" font-size="13" fill="#06b6d4" letter-spacing="1"> Hello, I'm</text>
+
+  <!-- "Varun" -->
+  <text x="36" y="218" font-family="'Segoe UI',Arial,sans-serif" font-size="86" font-weight="900" fill="white">Varun</text>
+
+  <!-- "Developer" gradient -->
+  <text x="36" y="314" font-family="'Segoe UI',Arial,sans-serif" font-size="86" font-weight="900" fill="url(#nameGrad)">Developer</text>
+
+  <!-- "> Frontend Engineer |" -->
+  <text x="36" y="358" font-family="monospace" font-size="15" fill="#10b981">&gt; Frontend Engineer </text>
+  <rect x="284" y="342" width="2.5" height="20" fill="#10b981" opacity="0.9"/>
+
+  <!-- Description -->
+  <text x="36" y="394" font-family="'Segoe UI',Arial,sans-serif" font-size="13.5" fill="#9ca3af">Frontend developer specializing in building modern,</text>
+  <text x="36" y="413" font-family="'Segoe UI',Arial,sans-serif" font-size="13.5" fill="#9ca3af">responsive web applications with clean architecture,</text>
+  <text x="36" y="432" font-family="'Segoe UI',Arial,sans-serif" font-size="13.5" fill="#9ca3af">pixel-perfect UI, and production-ready code.</text>
+
+  <!-- Buttons -->
+  <rect x="36" y="456" width="162" height="44" rx="22" fill="url(#btnGrad)"/>
+  <text x="117" y="483" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">⊞ View Projects</text>
+
+  <rect x="210" y="456" width="172" height="44" rx="22" fill="#111827" stroke="#4b5563" stroke-width="1.2"/>
+  <text x="296" y="483" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="white" text-anchor="middle">↓ Download Resume</text>
+
+  <rect x="394" y="456" width="138" height="44" rx="22" fill="#111827" stroke="#4b5563" stroke-width="1.2"/>
+  <text x="463" y="483" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="white" text-anchor="middle">✉ Contact Me</text>
+
+  <!-- Social icons -->
+  <circle cx="54" cy="540" r="18" fill="#1a1a2e" stroke="#374151" stroke-width="1.2"/>
+  <text x="54" y="546" font-family="monospace" font-size="12" fill="#d1d5db" text-anchor="middle">GH</text>
+  <circle cx="100" cy="540" r="18" fill="#1a1a2e" stroke="#374151" stroke-width="1.2"/>
+  <text x="100" y="546" font-family="monospace" font-size="12" fill="#d1d5db" text-anchor="middle">in</text>
+  <circle cx="146" cy="540" r="18" fill="#1a1a2e" stroke="#374151" stroke-width="1.2"/>
+  <text x="146" y="546" font-family="monospace" font-size="12" fill="#d1d5db" text-anchor="middle">𝕏</text>
+
+  <!-- Scroll indicator -->
+  <rect x="572" y="660" width="24" height="36" rx="12" fill="none" stroke="#6b7280" stroke-width="1.5"/>
+  <circle cx="584" cy="675" r="4" fill="#6b7280"/>
+  <text x="584" y="714" font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">Scroll to explore</text>
+
+  <!-- ===== HERO RIGHT: CODE EDITOR ===== -->
+  <rect x="660" y="78" width="504" height="576" rx="16" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <!-- Editor title bar -->
+  <rect x="660" y="78" width="504" height="48" rx="16" fill="#1f2937"/>
+  <rect x="660" y="110" width="504" height="16" fill="#1f2937"/>
+  <!-- Traffic lights -->
+  <circle cx="694" cy="102" r="7" fill="#ef4444"/>
+  <circle cx="718" cy="102" r="7" fill="#f59e0b"/>
+  <circle cx="742" cy="102" r="7" fill="#22c55e"/>
+  <!-- Filename -->
+  <text x="772" y="107" font-family="monospace" font-size="13" fill="#9ca3af">developer.ts</text>
+
+  <!-- Code content -->
+  <text x="680" y="154" font-family="monospace" font-size="13.5" fill="#10b981">const</text>
+  <text x="734" y="154" font-family="monospace" font-size="13.5" fill="#e2e8f0"> developer</text>
+  <text x="830" y="154" font-family="monospace" font-size="13.5" fill="#10b981"> =</text>
+  <text x="850" y="154" font-family="monospace" font-size="13.5" fill="#e2e8f0"> &#123;</text>
+
+  <text x="698" y="184" font-family="monospace" font-size="13.5" fill="#93c5fd">  name:</text>
+  <text x="758" y="184" font-family="monospace" font-size="13.5" fill="#fcd34d"> 'Varun',</text>
+
+  <text x="698" y="212" font-family="monospace" font-size="13.5" fill="#93c5fd">  role:</text>
+  <text x="752" y="212" font-family="monospace" font-size="13.5" fill="#fcd34d"> 'Frontend Developer',</text>
+
+  <text x="698" y="240" font-family="monospace" font-size="13.5" fill="#93c5fd">  experience:</text>
+  <text x="822" y="240" font-family="monospace" font-size="13.5" fill="#fcd34d"> '1+ year',</text>
+
+  <text x="698" y="268" font-family="monospace" font-size="13.5" fill="#93c5fd">  skills: [</text>
+
+  <text x="714" y="296" font-family="monospace" font-size="13.5" fill="#fcd34d">    'Angular',</text>
+  <text x="814" y="296" font-family="monospace" font-size="13.5" fill="#fcd34d"> 'TypeScript',</text>
+
+  <text x="714" y="324" font-family="monospace" font-size="13.5" fill="#fcd34d">    'RxJs',</text>
+  <text x="798" y="324" font-family="monospace" font-size="13.5" fill="#fcd34d"> 'SCSS'</text>
+
+  <text x="698" y="352" font-family="monospace" font-size="13.5" fill="#93c5fd">  ],</text>
+
+  <text x="698" y="380" font-family="monospace" font-size="13.5" fill="#93c5fd">  passion:</text>
+  <text x="782" y="380" font-family="monospace" font-size="13.5" fill="#fcd34d"> 'Building great UIs',</text>
+
+  <text x="698" y="408" font-family="monospace" font-size="13.5" fill="#93c5fd">  available:</text>
+  <text x="806" y="408" font-family="monospace" font-size="13.5" fill="#a78bfa"> true</text>
+  <text x="852" y="408" font-family="monospace" font-size="13.5" fill="#6b7280"> // let's talk!</text>
+
+  <text x="680" y="438" font-family="monospace" font-size="13.5" fill="#e2e8f0">&#125;;</text>
+</svg>

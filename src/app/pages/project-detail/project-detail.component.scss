@@ -45,6 +45,13 @@
   overflow: hidden;
 }
 
+.project-detail__overview-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
 .project-placeholder-lg {
   aspect-ratio: 16 / 10;
   background: linear-gradient(135deg, rgba(108, 99, 255, 0.08), rgba(0, 212, 170, 0.08));
