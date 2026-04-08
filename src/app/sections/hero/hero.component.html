@@ -31,21 +31,15 @@
 
       <div class="hero__cta">
         <button class="btn btn-primary" (click)="scrollService.scrollTo('projects')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
-          </svg>
+          <i class="icon icon--md icon--image" aria-hidden="true"></i>
           View Projects
         </button>
         <a class="btn btn-outline" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
+          <i class="icon icon--md icon--download" aria-hidden="true"></i>
           Download Resume
         </a>
         <button class="btn btn-outline" (click)="scrollService.scrollTo('contact')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
+          <i class="icon icon--md icon--send" aria-hidden="true"></i>
           Contact Me
         </button>
       </div>
@@ -53,9 +47,7 @@
       <div class="hero__social">
         @for (social of dataService.socialLinks; track social.name) {
           <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link" [attr.aria-label]="social.name">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path [attr.d]="social.icon"/>
-            </svg>
+            <i [class]="'icon icon--' + social.icon" aria-hidden="true"></i>
           </a>
         }
       </div>

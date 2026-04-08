@@ -251,3 +251,72 @@ img {
     margin-bottom: 40px;
   }
 }
+
+// ─── Global icon sprite system ─────────────────────────────────────────────
+// sprites.svg: 28 icons × 24px wide = 672px (each cell 24×24).
+// nav-icons.svg is separate — used only by the navbar component.
+//
+// Uses CSS mask-image so the SVG shape masks background-color: currentColor.
+// Icons automatically inherit their CSS `color` property — exactly like the
+// original inline SVGs with stroke/fill="currentColor".
+//
+// Usage: <i class="icon icon--{size} icon--{name}" aria-hidden="true"></i>
+$icon-count: 28;
+
+.icon {
+  --_col:  0;
+  --_size: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+  width:  var(--_size);
+  height: var(--_size);
+  background-color: currentColor;
+  -webkit-mask-image: url('assets/icons/sprites.svg');
+          mask-image: url('assets/icons/sprites.svg');
+  -webkit-mask-size: calc(#{$icon-count} * var(--_size)) var(--_size);
+          mask-size: calc(#{$icon-count} * var(--_size)) var(--_size);
+  -webkit-mask-position: calc(var(--_col) * -1 * var(--_size)) 0;
+          mask-position: calc(var(--_col) * -1 * var(--_size)) 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+// Size variants
+.icon--sm  { --_size: 14px; }
+.icon--md  { --_size: 18px; }
+// default   = 20px
+.icon--lg  { --_size: 24px; }
+.icon--2xl { --_size: 32px; }
+.icon--3xl { --_size: 48px; }
+.icon--4xl { --_size: 80px; }
+
+// Column map (matches sprites.svg column order)
+.icon--sun           { --_col:  0; }
+.icon--moon          { --_col:  1; }
+.icon--github        { --_col:  2; }
+.icon--linkedin      { --_col:  3; }
+.icon--twitter       { --_col:  4; }
+.icon--arrow-right   { --_col:  5; }
+.icon--arrow-left    { --_col:  6; }
+.icon--download      { --_col:  7; }
+.icon--map-pin       { --_col:  8; }
+.icon--send          { --_col:  9; }
+.icon--check         { --_col: 10; }
+.icon--calendar      { --_col: 11; }
+.icon--clock         { --_col: 12; }
+.icon--quote         { --_col: 13; }
+.icon--chevron-left  { --_col: 14; }
+.icon--chevron-right { --_col: 15; }
+.icon--external-link { --_col: 16; }
+.icon--star          { --_col: 17; }
+.icon--lightbulb     { --_col: 18; }
+.icon--smartphone    { --_col: 19; }
+.icon--layout        { --_col: 20; }
+.icon--zap           { --_col: 21; }
+.icon--terminal      { --_col: 22; }
+.icon--package       { --_col: 23; }
+.icon--settings      { --_col: 24; }
+.icon--search        { --_col: 25; }
+.icon--image         { --_col: 26; }
+.icon--book          { --_col: 27; }

@@ -44,9 +44,7 @@
         @for (strength of dataService.strengths; track strength.title) {
           <div class="strength glass-card">
             <div class="strength__icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path [attr.d]="strength.icon"/>
-              </svg>
+              <i [class]="'icon icon--lg icon--' + strength.icon" aria-hidden="true"></i>
             </div>
             <div>
               <h4 class="strength__title">{{ strength.title }}</h4>

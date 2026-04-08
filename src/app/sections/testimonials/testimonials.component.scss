@@ -1,3 +1,4 @@
+
 .section-header, .testimonials__carousel {
   opacity: 0;
   transform: translateY(40px);
@@ -95,10 +96,12 @@
 .testimonial-card__quote {
   position: relative;
 
-  svg {
+  .quote-mark {
     position: absolute;
     top: -8px;
     left: -4px;
+    color: var(--accent-primary);
+    opacity: 0.15;
   }
 
   p {
@@ -154,6 +157,9 @@
 .author-rating {
   display: flex;
   gap: 2px;
+
+  // Stars were fill="var(--accent-secondary)" — set color so mask-image inherits teal
+  .icon { color: var(--accent-secondary); }
 }
 
 .testimonials__dots {

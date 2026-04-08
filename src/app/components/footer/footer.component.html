@@ -27,9 +27,7 @@
         <div class="social-icons">
           @for (social of dataService.socialLinks; track social.name) {
             <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-icon" [attr.aria-label]="social.name">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path [attr.d]="social.icon"/>
-              </svg>
+              <i [class]="'icon icon--' + social.icon" aria-hidden="true"></i>
             </a>
           }
         </div>

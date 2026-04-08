@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 .navbar {
   position: fixed;
   top: 0;
@@ -5,22 +7,42 @@
   width: 100%;
   height: var(--navbar-height);
   z-index: 1000;
-  transition: all var(--transition-base);
   display: flex;
   align-items: center;
+  transition:
+    background var(--transition-base),
+    box-shadow var(--transition-base);
 
   &.scrolled {
     background: var(--bg-glass);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-glass);
     box-shadow: var(--shadow-sm);
   }
+
+  // On mobile use a SOLID background instead of backdrop-filter.
+  // backdrop-filter creates a containing block for position:fixed
+  // children in WebKit, which traps the sidebar inside the 72px nav.
+  @media (max-width: 1024px) {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-glass);
+
+    &.scrolled {
+      background: var(--bg-primary);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
 }
 
+// Must sit above backdrop + sidebar so logo & hamburger stay clickable.
 .navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
 }
 
 .navbar__logo {
@@ -31,7 +53,7 @@
   display: flex;
   align-items: center;
   gap: 0;
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base);
 
   &:hover {
     transform: scale(1.02);
@@ -51,25 +73,21 @@
   }
 }
 
-.navbar__links {
-  display: flex;
-  list-style: none;
-  gap: 8px;
+// ─── Sidebar backdrop ──────────────────────────────────────────────────────
+.sidebar-backdrop {
+  display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    display: block;
     position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    background: var(--bg-primary);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--transition-base);
+    transition:
+      opacity var(--transition-base),
+      visibility var(--transition-base);
 
     &.active {
       opacity: 1;
@@ -78,15 +96,57 @@
   }
 }
 
+// ─── Nav links / Sidebar panel ─────────────────────────────────────────────
+.navbar__links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: var(--navbar-height);
+    right: 0;
+    bottom: 0;
+    width: 70%;
+    max-width: 300px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 2px;
+    padding: 1.5rem 1rem;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-glass);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    overflow-y: auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.35s;
+
+    &.active {
+      transform: translateX(0);
+      visibility: visible;
+    }
+  }
+}
+
+// ─── Individual link ────────────────────────────────────────────────────────
 .navbar__link {
-  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 500;
+  white-space: nowrap;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all var(--transition-fast);
-  position: relative;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
 
   &:hover {
     color: var(--text-primary);
@@ -98,13 +158,62 @@
     background: rgba(108, 99, 255, 0.1);
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    padding: 12px 32px;
+  @media (max-width: 1024px) {
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border-left: 2px solid transparent;
+    font-size: 0.95rem;
+    transition:
+      color var(--transition-fast),
+      background var(--transition-fast),
+      border-color var(--transition-fast);
+
+    &:hover {
+      background: var(--bg-card-hover);
+      border-left-color: var(--border-glass);
+      color: var(--text-primary);
+    }
+
+    &.active {
+      background: rgba(108, 99, 255, 0.08);
+      color: var(--accent-primary);
+    }
   }
 }
 
+// ─── Nav icon sprite ────────────────────────────────────────────────────────
+// nav-icons.svg is a 192×24 sprite sheet: 8 icons, each 24×24 cell.
+// Uses mask-image so icons inherit currentColor from the parent link —
+// muted (text-secondary) by default, accent-primary when active/hovered.
+$nav-icon-size:    18px;
+$nav-icon-columns: 8;
+$nav-icon-icons: home, user, code, layers, briefcase, star, book, mail;
 
+.nav-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width:  $nav-icon-size;
+  height: $nav-icon-size;
+  background-color: currentColor;
+  -webkit-mask-image: url('../../../assets/icons/nav-icons.svg');
+          mask-image: url('../../../assets/icons/nav-icons.svg');
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: #{$nav-icon-columns * $nav-icon-size} $nav-icon-size;
+          mask-size: #{$nav-icon-columns * $nav-icon-size} $nav-icon-size;
+}
+
+@each $icon in $nav-icon-icons {
+  $col: list.index($nav-icon-icons, $icon) - 1;
+
+  .nav-icon--#{$icon} {
+    -webkit-mask-position: #{$col * -$nav-icon-size} 0;
+            mask-position: #{$col * -$nav-icon-size} 0;
+  }
+}
+
+// ─── Actions row ────────────────────────────────────────────────────────────
 .navbar__actions {
   display: flex;
   align-items: center;
@@ -122,7 +231,10 @@
   background: var(--bg-glass);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition:
+    border-color var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base);
 
   &:hover {
     border-color: var(--accent-primary);
@@ -131,6 +243,7 @@
   }
 }
 
+// ─── Hamburger ──────────────────────────────────────────────────────────────
 .navbar__hamburger {
   display: none;
   flex-direction: column;
@@ -138,24 +251,38 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
 
   span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
     background: var(--text-primary);
     border-radius: 2px;
-    transition: all var(--transition-base);
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+  }
+
+  &:hover {
+    background: var(--bg-card);
   }
 
   &.active {
-    span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    span:nth-child(2) { opacity: 0; }
-    span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { ScrollService } from '../../core/services/scroll.service';
@@ -49,8 +49,14 @@ export class NavbarComponent {
     this.mobileOpen.update(v => !v);
   }
 
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.mobileOpen()) {
+      this.mobileOpen.set(false);
+    }
+  }
+
   isHomePage(): boolean {
     return this.router.url === '/' || this.router.url.startsWith('/#');
   }
-
 }

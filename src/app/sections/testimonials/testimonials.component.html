@@ -8,18 +8,14 @@
 
     <div class="testimonials__carousel" [class.visible]="isVisible()">
       <button class="carousel-btn carousel-btn--prev" (click)="prev()" aria-label="Previous testimonial">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
+        <i class="icon icon--chevron-left" aria-hidden="true"></i>
       </button>
 
       <div class="testimonials__track">
         @for (testimonial of dataService.testimonials; track testimonial.name; let i = $index) {
           <div class="testimonial-card glass-card" [class.active]="i === activeIndex()" [class.prev]="i < activeIndex()" [class.next]="i > activeIndex()">
             <div class="testimonial-card__quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--accent-primary)" opacity="0.15">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/>
-              </svg>
+              <i class="icon icon--2xl icon--quote quote-mark" aria-hidden="true"></i>
               <p>{{ testimonial.text }}</p>
             </div>
 
@@ -33,9 +29,7 @@
               </div>
               <div class="author-rating">
                 @for (_ of [].constructor(testimonial.rating); track $index) {
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-secondary)">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                  </svg>
+                  <i class="icon icon--sm icon--star" aria-hidden="true"></i>
                 }
               </div>
             </div>
@@ -44,9 +38,7 @@
       </div>
 
       <button class="carousel-btn carousel-btn--next" (click)="next()" aria-label="Next testimonial">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
+        <i class="icon icon--chevron-right" aria-hidden="true"></i>
       </button>
 
       <div class="testimonials__dots">

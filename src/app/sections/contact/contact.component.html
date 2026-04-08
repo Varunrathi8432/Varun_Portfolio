@@ -10,9 +10,7 @@
       <div class="contact__info">
         <div class="contact__card glass-card">
           <div class="contact__card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-            </svg>
+            <i class="icon icon--lg icon--send" aria-hidden="true"></i>
           </div>
           <div>
             <h4>Email</h4>
@@ -22,9 +20,7 @@
 
         <div class="contact__card glass-card">
           <div class="contact__card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
+            <i class="icon icon--lg icon--map-pin" aria-hidden="true"></i>
           </div>
           <div>
             <h4>Location</h4>
@@ -37,9 +33,7 @@
           <div class="social-row">
             @for (social of dataService.socialLinks; track social.name) {
               <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-link" [attr.aria-label]="social.name">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path [attr.d]="social.icon"/>
-                </svg>
+                <i [class]="'icon icon--' + social.icon" aria-hidden="true"></i>
               </a>
             }
           </div>
@@ -102,16 +96,12 @@
 
         <button type="submit" class="btn btn-primary submit-btn" [disabled]="submitted() || sending()">
           @if (submitted()) {
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
+            <i class="icon icon--md icon--check" aria-hidden="true"></i>
             Message Sent!
           } @else if (sending()) {
             Sending...
           } @else {
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
+            <i class="icon icon--md icon--send" aria-hidden="true"></i>
             Send Message
           }
         </button>
