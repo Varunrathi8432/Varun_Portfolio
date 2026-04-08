@@ -20,7 +20,7 @@
 
         <div class="project-detail__meta">
           <div class="project-detail__tags">
-            @for (tag of proj.tags; track tag) {
+            @for (tag of proj.tags; track $index) {
               <span class="tag">{{ tag }}</span>
             }
           </div>
@@ -50,7 +50,7 @@
           <div class="highlights glass-card">
             <h3>Key Highlights</h3>
             <ul>
-              @for (highlight of proj.highlights; track highlight) {
+              @for (highlight of proj.highlights; track $index) {
                 <li>
                   <i class="icon icon--sm icon--check" aria-hidden="true"></i>
                   {{ highlight }}
@@ -62,7 +62,7 @@
           <div class="tech-stack glass-card">
             <h3>Tech Stack</h3>
             <div class="tech-tags">
-              @for (tag of proj.tags; track tag) {
+              @for (tag of proj.tags; track $index) {
                 <span class="tag">{{ tag }}</span>
               }
             </div>
@@ -82,7 +82,7 @@
                 <div class="related-card__info">
                   <h4>{{ related.title }}</h4>
                   <div class="related-card__tags">
-                    @for (tag of related.tags.slice(0, 2); track tag) {
+                    @for (tag of related.tags.slice(0, 2); track $index) {
                       <span class="tag tag--sm">{{ tag }}</span>
                     }
                   </div>

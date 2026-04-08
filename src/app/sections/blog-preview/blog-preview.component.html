@@ -12,7 +12,7 @@
           <div class="preview-card__color-bar"></div>
           <div class="preview-card__content">
             <div class="preview-card__tags">
-              @for (tag of post.tags; track tag) {
+              @for (tag of post.tags; track $index) {
                 <span class="tag tag--sm">{{ tag }}</span>
               }
             </div>

@@ -47,7 +47,7 @@
             <p class="project-card__desc">{{ project.description }}</p>
             <div class="project-card__footer">
               <div class="project-card__tags">
-                @for (tag of project.tags; track tag) {
+                @for (tag of project.tags; track $index) {
                   <span class="tag">{{ tag }}</span>
                 }
               </div>

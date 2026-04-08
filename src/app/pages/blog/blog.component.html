@@ -10,7 +10,7 @@
       <article class="article">
         <div class="article__header">
           <div class="article__tags">
-            @for (tag of post.tags; track tag) {
+            @for (tag of post.tags; track $index) {
               <span class="tag">{{ tag }}</span>
             }
           </div>
@@ -58,7 +58,7 @@
             <div class="blog-card__color-bar"></div>
             <div class="blog-card__content">
               <div class="blog-card__tags">
-                @for (tag of post.tags; track tag) {
+                @for (tag of post.tags; track $index) {
                   <span class="tag tag--sm">{{ tag }}</span>
                 }
               </div>

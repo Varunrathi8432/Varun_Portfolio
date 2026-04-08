@@ -9,7 +9,7 @@
     <div class="timeline" [class.visible]="isVisible()">
       <div class="timeline__line"></div>
 
-      @for (exp of dataService.experiences; track exp.company; let i = $index) {
+      @for (exp of dataService.experiences; track $index; let i = $index) {
         <div class="timeline__item" [class.right]="i % 2 !== 0" [style.transition-delay]="(i * 0.2) + 's'">
           <div class="timeline__dot">
             <div class="dot-inner"></div>
@@ -32,7 +32,7 @@
             <p class="timeline__desc">{{ exp.description }}</p>
 
             <ul class="timeline__achievements">
-              @for (achievement of exp.achievements; track achievement) {
+              @for (achievement of exp.achievements; track $index) {
                 <li>
                   <i class="icon icon--sm icon--check" aria-hidden="true"></i>
                   {{ achievement }}
@@ -41,7 +41,7 @@
             </ul>
 
             <div class="timeline__tech">
-              @for (tech of exp.technologies; track tech) {
+              @for (tech of exp.technologies; track $index) {
                 <span class="tag">{{ tech }}</span>
               }
             </div>
