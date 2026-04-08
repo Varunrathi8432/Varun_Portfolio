@@ -20,6 +20,7 @@ export class DataService {
     { label: "Projects", sectionId: "projects", icon: "layers" },
     { label: "Experience", sectionId: "experience", icon: "briefcase" },
     { label: "Testimonials", sectionId: "testimonials", icon: "star" },
+    { label: "Blog", sectionId: "blog", icon: "book" },
     { label: "Contact", sectionId: "contact", icon: "mail" },
   ];
 

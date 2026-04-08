@@ -1,15 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ThemeService } from '../../core/services/theme.service';
 import { DataService } from '../../core/services/data.service';
+import { NavLink } from '../../shared/models/portfolio.models';
 import { slideInNav } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [NgClass],
   animations: [slideInNav],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
@@ -24,13 +25,22 @@ export class NavbarComponent {
     private router: Router,
   ) {}
 
-  navigate(sectionId: string): void {
+  navigate(link: NavLink): void {
     if (this.router.url !== '/') {
       this.router.navigate(['/']).then(() => {
-        setTimeout(() => this.scrollService.scrollTo(sectionId), 100);
+        setTimeout(() => this.scrollService.scrollTo(link.sectionId), 100);
       });
     } else {
-      this.scrollService.scrollTo(sectionId);
+      this.scrollService.scrollTo(link.sectionId);
+    }
+    this.mobileOpen.set(false);
+  }
+
+  navigateHome(): void {
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']);
+    } else {
+      this.scrollService.scrollTo('hero');
     }
     this.mobileOpen.set(false);
   }
@@ -42,4 +52,5 @@ export class NavbarComponent {
   isHomePage(): boolean {
     return this.router.url === '/' || this.router.url.startsWith('/#');
   }
+
 }

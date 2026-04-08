@@ -1,10 +1,13 @@
 import { Injectable, signal } from '@angular/core';
+import { DataService } from './data.service';
 
 @Injectable({ providedIn: 'root' })
 export class ScrollService {
   scrollProgress = signal(0);
   isScrolled = signal(false);
   activeSection = signal('hero');
+
+  constructor(private dataService: DataService) {}
 
   updateScroll(): void {
     const scrollTop = window.scrollY;
@@ -22,7 +25,7 @@ export class ScrollService {
   }
 
   private detectActiveSection(): void {
-    const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'testimonials', 'contact'];
+    const sections = this.dataService.navLinks.map(l => l.sectionId);
     const offset = 200;
 
     for (let i = sections.length - 1; i >= 0; i--) {

@@ -1,6 +1,6 @@
 <nav class="navbar" [ngClass]="{ scrolled: scrollService.isScrolled() }" @slideInNav>
   <div class="container navbar__inner">
-    <a class="navbar__logo" (click)="navigate('hero')">
+    <a class="navbar__logo" (click)="navigateHome()">
       <span class="logo-bracket">&lt;</span>
       <span class="logo-text">Dev</span>
       <span class="logo-dot">.</span>
@@ -14,20 +14,11 @@
           <a
             class="navbar__link"
             [ngClass]="{ active: isHomePage() && scrollService.activeSection() === link.sectionId }"
-            (click)="navigate(link.sectionId)">
+            (click)="navigate(link)">
             {{ link.label }}
           </a>
         </li>
       }
-      <li class="navbar__link-divider"></li>
-      <li>
-        <a class="navbar__link navbar__link--route" routerLink="/blog" (click)="mobileOpen.set(false)" [ngClass]="{ active: !isHomePage() }">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
-          </svg>
-          Blog
-        </a>
-      </li>
     </ul>
 
     <div class="navbar__actions">
