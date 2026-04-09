@@ -1,49 +1,88 @@
-<section id="testimonials" class="testimonials section" appInView [inViewThreshold]="0.1" (inView)="onVisible()">
+<section
+  id="testimonials"
+  class="testimonials section"
+  appInView
+  [inViewThreshold]="0.1"
+  (inView)="onVisible()"
+>
   <div class="container">
     <div class="section-header" [class.visible]="isVisible()">
       <span class="section-label">// Testimonials</span>
       <h2 class="section-title">What People Say</h2>
-      <p class="section-subtitle">Feedback from colleagues I've had the pleasure of working with</p>
+      <p class="section-subtitle">
+        Feedback from colleagues I've had the pleasure of working with
+      </p>
     </div>
 
     <div class="testimonials__carousel" [class.visible]="isVisible()">
-      <button class="carousel-btn carousel-btn--prev" (click)="prev()" aria-label="Previous testimonial">
-        <i class="icon icon--chevron-left" aria-hidden="true"></i>
-      </button>
+      <div class="testimonials__carousel-row">
+        <button
+          class="carousel-btn carousel-btn--prev"
+          (click)="prev()"
+          aria-label="Previous testimonial"
+        >
+          <i class="icon icon--chevron-left" aria-hidden="true"></i>
+        </button>
 
-      <div class="testimonials__track">
-        @for (testimonial of dataService.testimonials; track testimonial.name; let i = $index) {
-          <div class="testimonial-card glass-card" [class.active]="i === activeIndex()" [class.prev]="i < activeIndex()" [class.next]="i > activeIndex()">
-            <div class="testimonial-card__quote">
-              <i class="icon icon--2xl icon--quote quote-mark" aria-hidden="true"></i>
-              <p>{{ testimonial.text }}</p>
-            </div>
+        <div class="testimonials__track">
+          @for (
+            testimonial of dataService.testimonials;
+            track testimonial.name;
+            let i = $index
+          ) {
+            <div
+              class="testimonial-card glass-card"
+              [class.active]="i === activeIndex()"
+              [class.prev]="i < activeIndex()"
+              [class.next]="i > activeIndex()"
+            >
+              <div class="testimonial-card__quote">
+                <i
+                  class="icon icon--2xl icon--quote quote-mark"
+                  aria-hidden="true"
+                ></i>
+                <p>{{ testimonial.text }}</p>
+              </div>
 
-            <div class="testimonial-card__author">
-              <div class="author-avatar">
-                <span>{{ testimonial.avatar }}</span>
-              </div>
-              <div class="author-info">
-                <h4>{{ testimonial.name }}</h4>
-                <p>{{ testimonial.role }} at {{ testimonial.company }}</p>
-              </div>
-              <div class="author-rating">
-                @for (_ of [].constructor(testimonial.rating); track $index) {
-                  <i class="icon icon--sm icon--star" aria-hidden="true"></i>
-                }
+              <div class="testimonial-card__author">
+                <div class="author-avatar">
+                  <span>{{ testimonial.avatar }}</span>
+                </div>
+                <div class="author-info">
+                  <h4>{{ testimonial.name }}</h4>
+                  <p>{{ testimonial.role }} at {{ testimonial.company }}</p>
+                </div>
+                <div class="author-rating">
+                  @for (_ of [].constructor(testimonial.rating); track $index) {
+                    <i class="icon icon--sm icon--star" aria-hidden="true"></i>
+                  }
+                </div>
               </div>
             </div>
-          </div>
-        }
+          }
+        </div>
+
+        <button
+          class="carousel-btn carousel-btn--next"
+          (click)="next()"
+          aria-label="Next testimonial"
+        >
+          <i class="icon icon--chevron-right" aria-hidden="true"></i>
+        </button>
       </div>
 
-      <button class="carousel-btn carousel-btn--next" (click)="next()" aria-label="Next testimonial">
-        <i class="icon icon--chevron-right" aria-hidden="true"></i>
-      </button>
-
       <div class="testimonials__dots">
-        @for (testimonial of dataService.testimonials; track testimonial.name; let i = $index) {
-          <button class="dot" [class.active]="i === activeIndex()" (click)="setActive(i)" [attr.aria-label]="'Go to testimonial ' + (i + 1)"></button>
+        @for (
+          testimonial of dataService.testimonials;
+          track testimonial.name;
+          let i = $index
+        ) {
+          <button
+            class="dot"
+            [class.active]="i === activeIndex()"
+            (click)="setActive(i)"
+            [attr.aria-label]="'Go to testimonial ' + (i + 1)"
+          ></button>
         }
       </div>
     </div>

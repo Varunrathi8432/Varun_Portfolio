@@ -1,4 +1,4 @@
-@use 'sass:list';
+@use "sass:list";
 
 .navbar {
   position: fixed;
@@ -24,7 +24,7 @@
   // On mobile use a SOLID background instead of backdrop-filter.
   // backdrop-filter creates a containing block for position:fixed
   // children in WebKit, which traps the sidebar inside the 72px nav.
-  @media (max-width: 1024px) {
+  @media (max-width: 1160px) {
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-glass);
 
@@ -77,7 +77,7 @@
 .sidebar-backdrop {
   display: none;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1160px) {
     display: block;
     position: fixed;
     inset: 0;
@@ -102,7 +102,7 @@
   list-style: none;
   gap: 8px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1160px) {
     position: fixed;
     top: var(--navbar-height);
     right: 0;
@@ -158,7 +158,7 @@
     background: rgba(108, 99, 255, 0.1);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1160px) {
     gap: 10px;
     padding: 10px 14px;
     border-radius: var(--radius-md);
@@ -186,22 +186,22 @@
 // nav-icons.svg is a 192×24 sprite sheet: 8 icons, each 24×24 cell.
 // Uses mask-image so icons inherit currentColor from the parent link —
 // muted (text-secondary) by default, accent-primary when active/hovered.
-$nav-icon-size:    18px;
+$nav-icon-size: 18px;
 $nav-icon-columns: 8;
 $nav-icon-icons: home, user, code, layers, briefcase, star, book, mail;
 
 .nav-icon {
   display: inline-block;
   flex-shrink: 0;
-  width:  $nav-icon-size;
+  width: $nav-icon-size;
   height: $nav-icon-size;
   background-color: currentColor;
-  -webkit-mask-image: url('../../../assets/icons/nav-icons.svg');
-          mask-image: url('../../../assets/icons/nav-icons.svg');
+  -webkit-mask-image: url("../../../assets/icons/nav-icons.svg");
+  mask-image: url("../../../assets/icons/nav-icons.svg");
   -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   -webkit-mask-size: #{$nav-icon-columns * $nav-icon-size} $nav-icon-size;
-          mask-size: #{$nav-icon-columns * $nav-icon-size} $nav-icon-size;
+  mask-size: #{$nav-icon-columns * $nav-icon-size} $nav-icon-size;
 }
 
 @each $icon in $nav-icon-icons {
@@ -209,7 +209,7 @@ $nav-icon-icons: home, user, code, layers, briefcase, star, book, mail;
 
   .nav-icon--#{$icon} {
     -webkit-mask-position: #{$col * -$nav-icon-size} 0;
-            mask-position: #{$col * -$nav-icon-size} 0;
+    mask-position: #{$col * -$nav-icon-size} 0;
   }
 }
 
@@ -282,7 +282,7 @@ $nav-icon-icons: home, user, code, layers, briefcase, star, book, mail;
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1160px) {
     display: flex;
   }
 }

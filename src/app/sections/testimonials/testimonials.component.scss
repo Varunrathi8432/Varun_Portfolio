@@ -1,5 +1,5 @@
-
-.section-header, .testimonials__carousel {
+.section-header,
+.testimonials__carousel {
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.35, 0, 0.25, 1);
@@ -12,15 +12,29 @@
 
 .testimonials__carousel {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   max-width: 800px;
   margin: 0 auto;
   position: relative;
   transition-delay: 0.2s;
+}
+
+.testimonials__carousel-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
 
   @media (max-width: 768px) {
     gap: 12px;
+  }
+
+  // On small screens the buttons overlay the track so the card gets full width
+  @media (max-width: 480px) {
+    position: relative;
+    gap: 0;
   }
 }
 
@@ -51,6 +65,20 @@
     height: 36px;
     min-width: 36px;
   }
+
+  // Overlay buttons on top of the track edges; card gets padding to compensate
+  @media (max-width: 480px) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--prev {
+      left: 6px;
+    }
+    &--next {
+      right: 6px;
+    }
+  }
 }
 
 .testimonials__track {
@@ -58,6 +86,11 @@
   position: relative;
   min-height: 280px;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    min-height: 360px;
+  }
 }
 
 .testimonial-card {
@@ -91,6 +124,11 @@
   @media (max-width: 768px) {
     padding: 24px;
   }
+
+  // Extra horizontal padding so text clears the overlaid buttons
+  @media (max-width: 480px) {
+    padding: 20px 52px;
+  }
 }
 
 .testimonial-card__quote {
@@ -123,6 +161,12 @@
   align-items: center;
   gap: 14px;
   margin-top: 24px;
+
+  // Wrap rating to its own row so it doesn't crowd avatar + name on narrow screens
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
 
 .author-avatar {
@@ -141,16 +185,23 @@
 
 .author-info {
   flex: 1;
+  min-width: 0; // allow flex shrink so long names don't overflow
 
   h4 {
     font-size: 0.95rem;
     font-weight: 600;
     margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   p {
     font-size: 0.8rem;
     color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -158,15 +209,18 @@
   display: flex;
   gap: 2px;
 
-  // Stars were fill="var(--accent-secondary)" — set color so mask-image inherits teal
-  .icon { color: var(--accent-secondary); }
+  // On wrap, push stars into the second row aligned under author-info
+  @media (max-width: 480px) {
+    width: 100%;
+    padding-left: 58px; // avatar(48px) + gap(10px)
+  }
+
+  .icon {
+    color: var(--accent-secondary);
+  }
 }
 
 .testimonials__dots {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   gap: 8px;
 }
