@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { NgClass } from '@angular/common';
 import { DataService } from '../../core/services/data.service';
 import { EmailService } from '../../core/services/email.service';
+import { ToastService } from '../../core/services/toast.service';
 import { InViewDirective } from '../../core/directives/in-view.directive';
 
 @Component({
@@ -23,6 +24,7 @@ export class ContactComponent {
     private fb: FormBuilder,
     public dataService: DataService,
     private emailService: EmailService,
+    private toastService: ToastService,
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -48,6 +50,7 @@ export class ContactComponent {
     this.emailService.sendContactEmail(this.contactForm.value).then(() => {
       this.sending.set(false);
       this.submitted.set(true);
+      this.toastService.success('Message Sent', 'Your message was sent successfully!');
       setTimeout(() => {
         this.submitted.set(false);
         this.contactForm.reset();
@@ -55,6 +58,7 @@ export class ContactComponent {
     }).catch(() => {
       this.sending.set(false);
       this.error.set('Failed to send message. Please try again.');
+      this.toastService.error('Send Failed', 'Failed to send message. Please try again.');
     });
   }
 }

@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { BackToTopComponent } from './components/back-to-top/back-to-top.component';
 import { CursorFollowerComponent } from './components/cursor-follower/cursor-follower.component';
+import { ToastComponent } from './components/toast/toast.component';
 import { ThemeService } from './core/services/theme.service';
 import { ScrollService } from './core/services/scroll.service';
 import { routeAnimation } from './shared/animations/route-animations';
@@ -22,6 +23,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     PreloaderComponent,
     BackToTopComponent,
     CursorFollowerComponent,
+    ToastComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
