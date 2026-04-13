@@ -25,9 +25,17 @@ export class DataService {
   ];
 
   readonly socialLinks: SocialLink[] = [
-    { name: "GitHub",   url: "https://github.com/Varunrathi8432",                    icon: "github"   },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/varun-rathi-1b7467280",    icon: "linkedin" },
-    { name: "Twitter",  url: "https://twitter.com",                                  icon: "twitter"  },
+    {
+      name: "GitHub",
+      url: "https://github.com/Varunrathi8432",
+      icon: "github",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/varun-rathi-1b7467280",
+      icon: "linkedin",
+    },
+    { name: "Twitter", url: "https://x.com/varunrathi8432", icon: "twitter" },
   ];
 
   readonly stats: Stat[] = [
