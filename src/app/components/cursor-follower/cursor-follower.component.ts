@@ -1,20 +1,32 @@
-import { Component, HostListener, signal, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+  signal,
+} from '@angular/core';
+
+const INTERACTIVE_SELECTOR =
+  'a, button, [role="button"], input, textarea, select, .project-card, .filter-btn, .strength, .blog-card';
 
 @Component({
   selector: 'app-cursor-follower',
   standalone: true,
   templateUrl: './cursor-follower.component.html',
   styleUrls: ['./cursor-follower.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CursorFollowerComponent implements OnInit {
-  x = signal(0);
-  y = signal(0);
-  isPointer = signal(false);
-  isVisible = signal(false);
-  isTouchDevice = signal(false);
+  readonly x = signal(0);
+  readonly y = signal(0);
+  readonly isPointer = signal(false);
+  readonly isVisible = signal(false);
+  readonly isTouchDevice = signal(false);
 
   ngOnInit(): void {
-    this.isTouchDevice.set('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    this.isTouchDevice.set(
+      'ontouchstart' in window || navigator.maxTouchPoints > 0,
+    );
   }
 
   @HostListener('document:mousemove', ['$event'])
@@ -24,8 +36,7 @@ export class CursorFollowerComponent implements OnInit {
     if (!this.isVisible()) this.isVisible.set(true);
 
     const target = e.target as HTMLElement;
-    const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .project-card, .filter-btn, .strength, .blog-card');
-    this.isPointer.set(!!isInteractive);
+    this.isPointer.set(!!target.closest(INTERACTIVE_SELECTOR));
   }
 
   @HostListener('document:mouseleave')

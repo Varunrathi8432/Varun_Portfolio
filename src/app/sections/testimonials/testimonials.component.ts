@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
 import { InViewDirective } from '../../core/directives/in-view.directive';
 
@@ -8,12 +8,12 @@ import { InViewDirective } from '../../core/directives/in-view.directive';
   imports: [InViewDirective],
   templateUrl: './testimonials.component.html',
   styleUrls: ['./testimonials.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsComponent {
-  isVisible = signal(false);
-  activeIndex = signal(0);
-
-  constructor(public dataService: DataService) {}
+  readonly isVisible = signal(false);
+  readonly activeIndex = signal(0);
+  readonly dataService = inject(DataService);
 
   onVisible(): void {
     this.isVisible.set(true);
@@ -24,13 +24,13 @@ export class TestimonialsComponent {
   }
 
   next(): void {
-    this.activeIndex.update(i =>
-      (i + 1) % this.dataService.testimonials.length,
+    this.activeIndex.update(
+      (i) => (i + 1) % this.dataService.testimonials.length,
     );
   }
 
   prev(): void {
-    this.activeIndex.update(i =>
+    this.activeIndex.update((i) =>
       i === 0 ? this.dataService.testimonials.length - 1 : i - 1,
     );
   }

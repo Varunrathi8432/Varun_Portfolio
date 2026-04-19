@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ScrollService } from '../../core/services/scroll.service';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-back-to-top',
   standalone: true,
   templateUrl: './back-to-top.component.html',
   styleUrls: ['./back-to-top.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fadeScale', [
       transition(':enter', [
@@ -20,7 +21,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class BackToTopComponent {
-  constructor(public scrollService: ScrollService) {}
+  readonly scrollService = inject(ScrollService);
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

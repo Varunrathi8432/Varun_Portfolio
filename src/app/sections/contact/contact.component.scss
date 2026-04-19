@@ -142,11 +142,17 @@
     min-height: 120px;
   }
 
-  .error {
+  .error,
+  .form-status {
     display: block;
     font-size: 0.78rem;
     color: #ff5f57;
     margin-top: 6px;
+    min-height: 1.1em;
+  }
+
+  .form-status:empty {
+    margin-top: 0;
   }
 }
 

@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <form class="contact__form glass-card" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <form class="contact__form glass-card" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
           <label for="name">Name</label>
           <input
@@ -48,10 +48,15 @@
             type="text"
             formControlName="name"
             placeholder="Your name"
+            autocomplete="name"
+            aria-describedby="name-error"
+            [attr.aria-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched ? 'true' : null"
             [ngClass]="{ invalid: contactForm.get('name')?.invalid && contactForm.get('name')?.touched }">
-          @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-            <span class="error">Name is required</span>
-          }
+          <span id="name-error" class="error" role="alert">
+            @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+              Name is required
+            }
+          </span>
         </div>
 
         <div class="form-group">
@@ -61,10 +66,15 @@
             type="email"
             formControlName="email"
             placeholder="your.email&#64;example.com"
+            autocomplete="email"
+            aria-describedby="email-error"
+            [attr.aria-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched ? 'true' : null"
             [ngClass]="{ invalid: contactForm.get('email')?.invalid && contactForm.get('email')?.touched }">
-          @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-            <span class="error">Please enter a valid email</span>
-          }
+          <span id="email-error" class="error" role="alert">
+            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+              Please enter a valid email
+            }
+          </span>
         </div>
 
         <div class="form-group">
@@ -83,16 +93,22 @@
             formControlName="message"
             rows="5"
             placeholder="Tell me about your project..."
+            aria-describedby="message-error"
+            [attr.aria-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched ? 'true' : null"
             [ngClass]="{ invalid: contactForm.get('message')?.invalid && contactForm.get('message')?.touched }">
           </textarea>
-          @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
-            <span class="error">Message is required</span>
-          }
+          <span id="message-error" class="error" role="alert">
+            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+              Message is required
+            }
+          </span>
         </div>
 
-        @if (error()) {
-          <p class="error">{{ error() }}</p>
-        }
+        <p class="form-status" aria-live="polite">
+          @if (error()) {
+            {{ error() }}
+          }
+        </p>
 
         <button type="submit" class="btn btn-primary submit-btn" [disabled]="submitted() || sending()">
           @if (submitted()) {

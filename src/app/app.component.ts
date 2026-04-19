@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ScrollProgressComponent } from './components/scroll-progress/scroll-progress.component';
@@ -27,6 +27,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     routeAnimation,
     trigger('pageLoad', [

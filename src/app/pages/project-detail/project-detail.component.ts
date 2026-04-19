@@ -1,8 +1,16 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Location } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { Project } from '../../shared/models/portfolio.models';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-project-detail',
@@ -10,30 +18,28 @@ import { Location } from '@angular/common';
   imports: [RouterLink],
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectDetailComponent implements OnInit {
-  project = signal<Project | null>(null);
-  relatedProjects = signal<Project[]>([]);
+  readonly project = signal<Project | null>(null);
+  readonly relatedProjects = signal<readonly Project[]>([]);
 
-  constructor(
-    private route: ActivatedRoute,
-    private dataService: DataService,
-    private location: Location,
-  ) {}
+  private readonly route = inject(ActivatedRoute);
+  private readonly dataService = inject(DataService);
+  private readonly location = inject(Location);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const slug = params['slug'];
-      const found = this.dataService.getProjectBySlug(slug);
-      this.project.set(found ?? null);
+      const found = this.dataService.getProjectBySlug(slug) ?? null;
+      this.project.set(found);
 
-      if (found) {
-        this.relatedProjects.set(
-          this.dataService.projects
-            .filter(p => p.slug !== slug)
-            .slice(0, 3),
-        );
-      }
+      this.relatedProjects.set(
+        found
+          ? this.dataService.projects.filter((p) => p.slug !== slug).slice(0, 3)
+          : [],
+      );
 
       window.scrollTo({ top: 0 });
     });

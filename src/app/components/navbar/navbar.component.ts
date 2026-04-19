@@ -1,11 +1,20 @@
-import { Component, HostListener, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
+import { DataService } from '../../core/services/data.service';
 import { ScrollService } from '../../core/services/scroll.service';
 import { ThemeService } from '../../core/services/theme.service';
-import { DataService } from '../../core/services/data.service';
-import { NavLink } from '../../shared/models/portfolio.models';
 import { slideInNav } from '../../shared/animations/animations';
+import { NavLink } from '../../shared/models/portfolio.models';
 
 @Component({
   selector: 'app-navbar',
@@ -14,20 +23,35 @@ import { slideInNav } from '../../shared/animations/animations';
   animations: [slideInNav],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  mobileOpen = signal(false);
+  readonly mobileOpen = signal(false);
+  readonly scrollService = inject(ScrollService);
+  readonly themeService = inject(ThemeService);
+  readonly dataService = inject(DataService);
+  private readonly router = inject(Router);
 
-  constructor(
-    public scrollService: ScrollService,
-    public themeService: ThemeService,
-    public dataService: DataService,
-    private router: Router,
-  ) {}
+  // Reactive URL driven by router navigation events, so OnPush re-renders the
+  // active-link indicator after browser back/forward or external navigations.
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects),
+      startWith(this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
+
+  readonly isHomePage = computed(() => {
+    const url = this.currentUrl();
+    return url === '/' || url.startsWith('/#');
+  });
 
   navigate(link: NavLink): void {
     if (this.router.url !== '/') {
       this.router.navigate(['/']).then(() => {
+        // Give the home route a tick to render before scrolling to the section.
         setTimeout(() => this.scrollService.scrollTo(link.sectionId), 100);
       });
     } else {
@@ -46,17 +70,11 @@ export class NavbarComponent {
   }
 
   toggleMobile(): void {
-    this.mobileOpen.update(v => !v);
+    this.mobileOpen.update((v) => !v);
   }
 
   @HostListener('document:keydown.escape')
   onEscapeKey(): void {
-    if (this.mobileOpen()) {
-      this.mobileOpen.set(false);
-    }
-  }
-
-  isHomePage(): boolean {
-    return this.router.url === '/' || this.router.url.startsWith('/#');
+    if (this.mobileOpen()) this.mobileOpen.set(false);
   }
 }

@@ -1,12 +1,17 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  AfterViewInit,
-  OnDestroy,
   Input,
+  OnDestroy,
   output,
 } from '@angular/core';
 
+/**
+ * Emits `inView` when the host element intersects the viewport. Disconnects
+ * after the first intersection when `inViewOnce` (default) is true, so
+ * scroll-reveal elements don't keep observing forever.
+ */
 @Directive({
   selector: '[appInView]',
   standalone: true,
@@ -19,7 +24,7 @@ export class InViewDirective implements AfterViewInit, OnDestroy {
 
   private observer?: IntersectionObserver;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private readonly el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
     this.observer = new IntersectionObserver(

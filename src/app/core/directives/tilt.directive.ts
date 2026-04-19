@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
   HostListener,
@@ -6,20 +7,28 @@ import {
   OnDestroy,
 } from '@angular/core';
 
+/**
+ * 3D-tilt hover effect with optional glare overlay. Setup DOM writes are
+ * deferred to `ngAfterViewInit` so the host element exists in the DOM before
+ * we mutate its inline styles.
+ */
 @Directive({
   selector: '[appTilt]',
   standalone: true,
 })
-export class TiltDirective implements OnDestroy {
+export class TiltDirective implements AfterViewInit, OnDestroy {
   @Input() tiltMaxAngle = 8;
   @Input() tiltScale = 1.02;
   @Input() tiltGlare = true;
 
   private glareEl?: HTMLElement;
 
-  constructor(private el: ElementRef<HTMLElement>) {
-    this.el.nativeElement.style.transition = 'transform 0.15s ease-out';
-    this.el.nativeElement.style.transformStyle = 'preserve-3d';
+  constructor(private readonly el: ElementRef<HTMLElement>) {}
+
+  ngAfterViewInit(): void {
+    const host = this.el.nativeElement;
+    host.style.transition = 'transform 0.15s ease-out';
+    host.style.transformStyle = 'preserve-3d';
 
     if (this.tiltGlare) {
       this.createGlare();
@@ -43,7 +52,8 @@ export class TiltDirective implements OnDestroy {
     const rotateY = ((x - centerX) / centerX) * this.tiltMaxAngle;
 
     this.el.nativeElement.style.transform =
-      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${this.tiltScale}, ${this.tiltScale}, ${this.tiltScale})`;
+      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) ` +
+      `scale3d(${this.tiltScale}, ${this.tiltScale}, ${this.tiltScale})`;
 
     if (this.glareEl) {
       const glareX = (x / rect.width) * 100;
@@ -55,8 +65,9 @@ export class TiltDirective implements OnDestroy {
 
   @HostListener('mouseleave')
   onLeave(): void {
-    this.el.nativeElement.style.transition = 'transform 0.5s ease-out';
-    this.el.nativeElement.style.transform =
+    const host = this.el.nativeElement;
+    host.style.transition = 'transform 0.5s ease-out';
+    host.style.transform =
       'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
 
     if (this.glareEl) {
@@ -72,8 +83,9 @@ export class TiltDirective implements OnDestroy {
     this.glareEl = document.createElement('div');
     this.glareEl.style.cssText =
       'position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;';
-    this.el.nativeElement.style.position = 'relative';
-    this.el.nativeElement.style.overflow = 'hidden';
-    this.el.nativeElement.appendChild(this.glareEl);
+    const host = this.el.nativeElement;
+    host.style.position = 'relative';
+    host.style.overflow = 'hidden';
+    host.appendChild(this.glareEl);
   }
 }

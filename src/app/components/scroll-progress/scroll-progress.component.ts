@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ScrollService } from '../../core/services/scroll.service';
 
 @Component({
@@ -6,7 +6,8 @@ import { ScrollService } from '../../core/services/scroll.service';
   standalone: true,
   templateUrl: './scroll-progress.component.html',
   styleUrls: ['./scroll-progress.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollProgressComponent {
-  constructor(public scrollService: ScrollService) {}
+  readonly scrollService = inject(ScrollService);
 }

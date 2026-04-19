@@ -1,11 +1,17 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
   Input,
-  AfterViewInit,
+  NgZone,
   OnDestroy,
 } from '@angular/core';
 
+/**
+ * Animates a number from 0 to `appCountUp` once the host element enters the
+ * viewport. Runs the rAF loop outside NgZone — we're only writing to
+ * `textContent`, so Angular doesn't need to re-check on every frame.
+ */
 @Directive({
   selector: '[appCountUp]',
   standalone: true,
@@ -18,7 +24,10 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;
   private hasAnimated = false;
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(
+    private readonly el: ElementRef<HTMLElement>,
+    private readonly zone: NgZone,
+  ) {}
 
   ngAfterViewInit(): void {
     this.el.nativeElement.textContent = '0' + this.countSuffix;
@@ -27,7 +36,7 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
       ([entry]) => {
         if (entry.isIntersecting && !this.hasAnimated) {
           this.hasAnimated = true;
-          this.animate();
+          this.zone.runOutsideAngular(() => this.animate());
           this.observer?.disconnect();
         }
       },
@@ -42,14 +51,12 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
 
   private animate(): void {
     const start = performance.now();
-    const startValue = 0;
     const end = this.targetValue;
 
     const step = (timestamp: number) => {
-      const elapsed = timestamp - start;
-      const progress = Math.min(elapsed / this.countDuration, 1);
+      const progress = Math.min((timestamp - start) / this.countDuration, 1);
       const eased = this.easeOutExpo(progress);
-      const current = Math.round(startValue + (end - startValue) * eased);
+      const current = Math.round(end * eased);
 
       this.el.nativeElement.textContent = current + this.countSuffix;
 

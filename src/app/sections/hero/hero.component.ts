@@ -1,7 +1,22 @@
-import { Component, OnInit, signal, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  NgZone,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { DataService } from '../../core/services/data.service';
 import { ScrollService } from '../../core/services/scroll.service';
-import { fadeInUp, fadeInLeft, fadeIn } from '../../shared/animations/animations';
+import { fadeIn, fadeInLeft, fadeInUp } from '../../shared/animations/animations';
+
+const ROLES = [
+  'Frontend Developer',
+  'Frontend Engineer',
+  'TypeScript Developer',
+  'UI/UX Enthusiast',
+];
 
 @Component({
   selector: 'app-hero',
@@ -9,49 +24,43 @@ import { fadeInUp, fadeInLeft, fadeIn } from '../../shared/animations/animations
   animations: [fadeInUp, fadeInLeft, fadeIn],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroComponent implements OnInit, OnDestroy {
-  displayText = signal('');
-  isTyping = signal(true);
+export class HeroComponent implements OnInit {
+  readonly displayText = signal('');
+  readonly isTyping = signal(true);
 
-  particles = Array.from({ length: 20 }, () => ({
+  readonly particles = Array.from({ length: 20 }, () => ({
     x: Math.random() * 100,
     y: 60 + Math.random() * 40,
     delay: Math.random() * 5,
     duration: 4 + Math.random() * 6,
   }));
 
-  private roles = ['Frontend Developer', 'Frontend Engineer', 'TypeScript Developer', 'UI/UX Enthusiast'];
+  readonly dataService = inject(DataService);
+  readonly scrollService = inject(ScrollService);
+  private readonly zone = inject(NgZone);
+  private readonly destroyRef = inject(DestroyRef);
+
   private roleIndex = 0;
   private charIndex = 0;
   private isDeleting = false;
   private timerId: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(
-    public dataService: DataService,
-    public scrollService: ScrollService,
-  ) {}
-
   ngOnInit(): void {
-    this.type();
-  }
-
-  ngOnDestroy(): void {
-    if (this.timerId) clearTimeout(this.timerId);
+    // Run the typing loop outside the zone — signal writes still trigger OnPush
+    // checks, but we avoid re-running change detection for the setTimeout itself.
+    this.zone.runOutsideAngular(() => this.type());
+    this.destroyRef.onDestroy(() => {
+      if (this.timerId !== null) clearTimeout(this.timerId);
+    });
   }
 
   private type(): void {
-    const current = this.roles[this.roleIndex];
-
-    if (this.isDeleting) {
-      this.isTyping.set(true);
-      this.charIndex--;
-      this.displayText.set(current.substring(0, this.charIndex));
-    } else {
-      this.isTyping.set(true);
-      this.charIndex++;
-      this.displayText.set(current.substring(0, this.charIndex));
-    }
+    const current = ROLES[this.roleIndex];
+    this.charIndex += this.isDeleting ? -1 : 1;
+    this.displayText.set(current.substring(0, this.charIndex));
+    this.isTyping.set(true);
 
     let speed = this.isDeleting ? 40 : 80;
 
@@ -61,7 +70,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       this.isDeleting = true;
     } else if (this.isDeleting && this.charIndex === 0) {
       this.isDeleting = false;
-      this.roleIndex = (this.roleIndex + 1) % this.roles.length;
+      this.roleIndex = (this.roleIndex + 1) % ROLES.length;
       speed = 300;
     }
 

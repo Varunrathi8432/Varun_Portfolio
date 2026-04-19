@@ -1,8 +1,9 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <app-preloader />
 <app-cursor-follower />
 <app-scroll-progress />
 <app-navbar />
-<main [@pageLoad]>
+<main id="main-content" tabindex="-1" [@pageLoad]>
   <div class="route-container" [@routeAnimation]="getRouteAnimationData(outlet)">
     <router-outlet #outlet="outlet" />
   </div>

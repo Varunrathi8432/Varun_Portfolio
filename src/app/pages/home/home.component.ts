@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HeroComponent } from '../../sections/hero/hero.component';
 import { AboutComponent } from '../../sections/about/about.component';
 import { SkillsComponent } from '../../sections/skills/skills.component';
@@ -23,5 +23,6 @@ import { ContactComponent } from '../../sections/contact/contact.component';
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

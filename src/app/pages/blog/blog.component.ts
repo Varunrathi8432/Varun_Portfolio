@@ -1,9 +1,23 @@
-import { Component, signal, computed } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { BlogPost } from '../../shared/models/portfolio.models';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
-import { Location } from '@angular/common';
+
+const DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
 @Component({
   selector: 'app-blog',
@@ -11,40 +25,40 @@ import { Location } from '@angular/common';
   imports: [RouterLink, TruncatePipe],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogComponent {
-  activeTag = signal<string | null>(null);
-  selectedPost = signal<BlogPost | null>(null);
+  readonly activeTag = signal<string | null>(null);
+  readonly selectedPost = signal<BlogPost | null>(null);
 
-  allTags = computed(() => {
+  readonly dataService = inject(DataService);
+  private readonly location = inject(Location);
+
+  readonly allTags = computed(() => {
     const tags = new Set<string>();
-    this.dataService.blogPosts.forEach(post =>
-      post.tags.forEach(tag => tags.add(tag)),
+    this.dataService.blogPosts.forEach((post) =>
+      post.tags.forEach((tag) => tags.add(tag)),
     );
     return Array.from(tags);
   });
 
-  filteredPosts = computed(() => {
+  readonly filteredPosts = computed(() => {
     const tag = this.activeTag();
     if (!tag) return this.dataService.blogPosts;
-    return this.dataService.blogPosts.filter(p => p.tags.includes(tag));
+    return this.dataService.blogPosts.filter((p) => p.tags.includes(tag));
   });
 
-  constructor(
-    public dataService: DataService,
-    private route: ActivatedRoute,
-    private location: Location,
-  ) {
-    this.route.params.subscribe(params => {
-      const slug = params['slug'];
-      if (slug) {
-        const post = this.dataService.getBlogPostBySlug(slug);
-        this.selectedPost.set(post ?? null);
-      } else {
-        this.selectedPost.set(null);
-      }
-      window.scrollTo({ top: 0 });
-    });
+  constructor() {
+    const route = inject(ActivatedRoute);
+    route.params
+      .pipe(takeUntilDestroyed(inject(DestroyRef)))
+      .subscribe((params) => {
+        const slug = params['slug'];
+        this.selectedPost.set(
+          slug ? this.dataService.getBlogPostBySlug(slug) ?? null : null,
+        );
+        window.scrollTo({ top: 0 });
+      });
   }
 
   setTag(tag: string | null): void {
@@ -56,10 +70,6 @@ export class BlogComponent {
   }
 
   formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    return DATE_FORMATTER.format(new Date(dateStr));
   }
 }

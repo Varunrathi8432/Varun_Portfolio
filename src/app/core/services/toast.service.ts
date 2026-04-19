@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
+/**
+ * Thin wrapper over PrimeNG's `MessageService` so components can push success /
+ * error toasts without knowing about the PrimeNG API.
+ */
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  constructor(private messageService: MessageService) {}
+  private readonly messageService = inject(MessageService);
 
   success(summary: string, detail: string, life = 4000): void {
     this.messageService.add({ severity: 'success', summary, detail, life });

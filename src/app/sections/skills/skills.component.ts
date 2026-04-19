@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
 import { InViewDirective } from '../../core/directives/in-view.directive';
 
@@ -8,11 +8,11 @@ import { InViewDirective } from '../../core/directives/in-view.directive';
   imports: [InViewDirective],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkillsComponent {
-  isVisible = signal(false);
-
-  constructor(public dataService: DataService) {}
+  readonly isVisible = signal(false);
+  readonly dataService = inject(DataService);
 
   onVisible(): void {
     this.isVisible.set(true);

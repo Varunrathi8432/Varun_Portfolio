@@ -1,10 +1,17 @@
-import { Component, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DataService } from '../../core/services/data.service';
-import { Project } from '../../shared/models/portfolio.models';
 import { InViewDirective } from '../../core/directives/in-view.directive';
 import { TiltDirective } from '../../core/directives/tilt.directive';
+import { DataService } from '../../core/services/data.service';
+
+type ProjectFilter = 'all' | 'featured';
 
 @Component({
   selector: 'app-projects',
@@ -12,21 +19,21 @@ import { TiltDirective } from '../../core/directives/tilt.directive';
   imports: [NgClass, RouterLink, InViewDirective, TiltDirective],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {
-  isVisible = signal(false);
-  activeFilter = signal<'all' | 'featured'>('all');
+  readonly isVisible = signal(false);
+  readonly activeFilter = signal<ProjectFilter>('all');
+  readonly dataService = inject(DataService);
 
-  constructor(public dataService: DataService) {}
+  // Memoized: only recomputes when the filter or project list changes.
+  readonly filteredProjects = computed(() =>
+    this.activeFilter() === 'featured'
+      ? this.dataService.projects.filter((p) => p.featured)
+      : this.dataService.projects,
+  );
 
-  filteredProjects(): Project[] {
-    if (this.activeFilter() === 'featured') {
-      return this.dataService.projects.filter(p => p.featured);
-    }
-    return this.dataService.projects;
-  }
-
-  setFilter(filter: 'all' | 'featured'): void {
+  setFilter(filter: ProjectFilter): void {
     this.activeFilter.set(filter);
   }
 

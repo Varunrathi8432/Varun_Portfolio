@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { ScrollService } from '../../core/services/scroll.service';
@@ -9,12 +9,10 @@ import { ScrollService } from '../../core/services/scroll.service';
   imports: [RouterLink],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  currentYear = new Date().getFullYear();
-
-  constructor(
-    public dataService: DataService,
-    public scrollService: ScrollService,
-  ) {}
+  readonly currentYear = new Date().getFullYear();
+  readonly dataService = inject(DataService);
+  readonly scrollService = inject(ScrollService);
 }
