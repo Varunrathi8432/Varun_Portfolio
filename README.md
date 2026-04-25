@@ -4,7 +4,7 @@
 
 **A modern, animated portfolio built with Angular 19 to showcase my frontend development skills.**
 
-[Live Demo](#) · [LinkedIn](https://www.linkedin.com/in/varun-rathi-1b7467280) · [GitHub](https://github.com/Varunrathi8432)
+[Live Demo](https://varun-portfolio-sable-ten.vercel.app) · [LinkedIn](https://www.linkedin.com/in/varun-rathi-1b7467280) · [GitHub](https://github.com/Varunrathi8432)
 
 ![Angular](https://img.shields.io/badge/Angular-19-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
@@ -25,11 +25,11 @@ This portfolio is itself a demonstration of those skills — built with Angular 
 
 ## Portfolio Highlights
 
-| Stat               | Detail                                 |
-| ------------------ | -------------------------------------- |
-| **Experience**     | 1+ Year Professional                   |
-| **Projects Built** | 6                                      |
-| **Blog Articles**  | 4 Published                            |
+| Stat               | Detail                                  |
+| ------------------ | --------------------------------------- |
+| **Experience**     | 1+ Year Professional                    |
+| **Projects Built** | 6                                       |
+| **Blog Articles**  | 4 Published                             |
 | **Growth**         | Junior → Frontend Developer in 6 months |
 
 ---
