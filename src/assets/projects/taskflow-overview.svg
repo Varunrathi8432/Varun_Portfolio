@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="1200" height="750" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="tfBar" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#818cf8"/>
+      <stop offset="100%" style="stop-color:#a5b4fc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f1f5f9"/>
+
+  <!-- ===== SIDEBAR ===== -->
+  <rect x="0" y="0" width="190" height="500" fill="#ffffff"/>
+  <rect x="189" y="0" width="1" height="500" fill="#e5e7eb"/>
+
+  <!-- Logo: rounded blue square + checkmark -->
+  <rect x="16" y="16" width="26" height="26" rx="13" fill="#2563eb"/>
+  <path d="M22 29 l5 5 l9 -10" stroke="white" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="35" font-family="'Segoe UI',Arial,sans-serif" font-size="15" font-weight="700" fill="#0f172a">TaskFlow</text>
+
+  <!-- Active Dashboard pill -->
+  <rect x="12" y="64" width="166" height="32" rx="7" fill="#eef2ff"/>
+  <rect x="22" y="73" width="14" height="14" rx="2.5" fill="#4f46e5"/>
+  <rect x="22" y="73" width="6" height="6" fill="#4f46e5"/>
+  <text x="46" y="84" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#4f46e5">Dashboard</text>
+
+  <!-- Tasks -->
+  <circle cx="29" cy="116" r="6" fill="none" stroke="#64748b" stroke-width="1.5"/>
+  <path d="M26 116 l2 2 l4 -4" stroke="#64748b" stroke-width="1.3" fill="none"/>
+  <text x="46" y="120" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Tasks</text>
+
+  <!-- Kanban Board -->
+  <rect x="23" y="138" width="3" height="10" fill="#64748b"/>
+  <rect x="28" y="138" width="3" height="6" fill="#64748b"/>
+  <rect x="33" y="138" width="3" height="10" fill="#64748b"/>
+  <text x="46" y="148" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Kanban Board</text>
+
+  <!-- Calendar -->
+  <rect x="23" y="164" width="13" height="11" rx="1.5" fill="none" stroke="#64748b" stroke-width="1.3"/>
+  <line x1="23" y1="168" x2="36" y2="168" stroke="#64748b" stroke-width="1.3"/>
+  <text x="46" y="174" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Calendar</text>
+
+  <!-- Projects -->
+  <path d="M22 192 h6 l2 2 h7 v8 h-15 z" fill="none" stroke="#64748b" stroke-width="1.3"/>
+  <text x="46" y="200" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Projects</text>
+
+  <!-- Analytics -->
+  <rect x="22" y="222" width="3" height="6" fill="#64748b"/>
+  <rect x="27" y="218" width="3" height="10" fill="#64748b"/>
+  <rect x="32" y="225" width="3" height="3" fill="#64748b"/>
+  <text x="46" y="227" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Analytics</text>
+
+  <!-- Settings -->
+  <circle cx="29" cy="251" r="5" fill="none" stroke="#64748b" stroke-width="1.3"/>
+  <circle cx="29" cy="251" r="1.6" fill="#64748b"/>
+  <text x="46" y="254" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#475569">Settings</text>
+
+  <!-- PROJECTS section -->
+  <text x="16" y="294" font-family="'Segoe UI',Arial,sans-serif" font-size="9" font-weight="700" fill="#94a3b8" letter-spacing="1">PROJECTS</text>
+
+  <g font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#334155">
+    <circle cx="22" cy="313" r="4" fill="#ef4444"/>
+    <text x="34" y="316">Task Manager App</text>
+    <text x="178" y="316" text-anchor="end" fill="#94a3b8" font-size="10">23</text>
+
+    <circle cx="22" cy="335" r="4" fill="#f59e0b"/>
+    <text x="34" y="338">Personal Portfolio</text>
+    <text x="178" y="338" text-anchor="end" fill="#94a3b8" font-size="10">11</text>
+
+    <circle cx="22" cy="357" r="4" fill="#a855f7"/>
+    <text x="34" y="360">FieldCircle FFMS</text>
+    <text x="178" y="360" text-anchor="end" fill="#94a3b8" font-size="10">20</text>
+
+    <circle cx="22" cy="379" r="4" fill="#06b6d4"/>
+    <text x="34" y="382">Zapium Sign-Up Portal</text>
+    <text x="178" y="382" text-anchor="end" fill="#94a3b8" font-size="10">8</text>
+
+    <circle cx="22" cy="401" r="4" fill="#a855f7"/>
+    <text x="34" y="404">FieldTrack Super Admin</text>
+    <text x="178" y="404" text-anchor="end" fill="#94a3b8" font-size="10">7</text>
+
+    <circle cx="22" cy="423" r="4" fill="#10b981"/>
+    <text x="34" y="426">Weather Forecast App</text>
+    <text x="178" y="426" text-anchor="end" fill="#94a3b8" font-size="10">6</text>
+  </g>
+
+  <!-- ===== TOP BAR (hamburger + theme + avatar) ===== -->
+  <g stroke="#475569" stroke-width="1.5" stroke-linecap="round">
+    <line x1="206" y1="22" x2="222" y2="22"/>
+    <line x1="206" y1="28" x2="222" y2="28"/>
+    <line x1="206" y1="34" x2="222" y2="34"/>
+  </g>
+  <!-- moon (theme) -->
+  <path d="M748 22 a8 8 0 1 0 8 8 a6 6 0 0 1 -8 -8 z" fill="#0f172a"/>
+  <!-- avatar -->
+  <circle cx="780" cy="28" r="11" fill="#4f46e5"/>
+  <text x="780" y="32" font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle">v</text>
+
+  <!-- ===== HEADER ===== -->
+  <text x="210" y="78" font-family="'Segoe UI',Arial,sans-serif" font-size="22" font-weight="700" fill="#0f172a">Dashboard</text>
+  <text x="210" y="96" font-family="'Segoe UI',Arial,sans-serif" font-size="11" fill="#64748b">Welcome back! Here's an overview of your tasks.</text>
+
+  <!-- ===== STAT CARDS ===== -->
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <!-- Total -->
+    <rect x="210" y="116" width="138" height="68" rx="10" fill="white" stroke="#e5e7eb"/>
+    <rect x="222" y="130" width="38" height="38" rx="9" fill="#eef2ff"/>
+    <rect x="232" y="140" width="18" height="20" rx="2" fill="none" stroke="#6366f1" stroke-width="1.6"/>
+    <line x1="236" y1="146" x2="246" y2="146" stroke="#6366f1" stroke-width="1.4"/>
+    <line x1="236" y1="151" x2="246" y2="151" stroke="#6366f1" stroke-width="1.4"/>
+    <line x1="236" y1="156" x2="244" y2="156" stroke="#6366f1" stroke-width="1.4"/>
+    <text x="270" y="152" font-size="22" font-weight="800" fill="#0f172a">75</text>
+    <text x="270" y="170" font-size="10" fill="#64748b">Total Tasks</text>
+
+    <!-- Completed -->
+    <rect x="358" y="116" width="138" height="68" rx="10" fill="white" stroke="#e5e7eb"/>
+    <rect x="370" y="130" width="38" height="38" rx="9" fill="#dcfce7"/>
+    <circle cx="389" cy="149" r="11" fill="#22c55e"/>
+    <path d="M384 149 l4 4 l6 -7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="418" y="152" font-size="22" font-weight="800" fill="#0f172a">55</text>
+    <text x="418" y="170" font-size="10" fill="#64748b">Completed</text>
+
+    <!-- In Progress -->
+    <rect x="506" y="116" width="138" height="68" rx="10" fill="white" stroke="#e5e7eb"/>
+    <rect x="518" y="130" width="38" height="38" rx="9" fill="#fef3c7"/>
+    <circle cx="537" cy="149" r="11" fill="#f59e0b"/>
+    <circle cx="533" cy="149" r="1.4" fill="white"/>
+    <circle cx="537" cy="149" r="1.4" fill="white"/>
+    <circle cx="541" cy="149" r="1.4" fill="white"/>
+    <text x="566" y="152" font-size="22" font-weight="800" fill="#0f172a">7</text>
+    <text x="566" y="170" font-size="10" fill="#64748b">In Progress</text>
+
+    <!-- Overdue -->
+    <rect x="654" y="116" width="138" height="68" rx="10" fill="white" stroke="#e5e7eb"/>
+    <rect x="666" y="130" width="38" height="38" rx="9" fill="#fee2e2"/>
+    <path d="M685 134 l11 19 h-22 z" fill="#ef4444"/>
+    <rect x="684.4" y="142" width="1.6" height="6" fill="white"/>
+    <circle cx="685.2" cy="151" r="0.9" fill="white"/>
+    <text x="714" y="152" font-size="22" font-weight="800" fill="#0f172a">0</text>
+    <text x="714" y="170" font-size="10" fill="#64748b">Overdue</text>
+  </g>
+
+  <!-- ===== PRODUCTIVITY CHART ===== -->
+  <rect x="210" y="200" width="340" height="200" rx="10" fill="white" stroke="#e5e7eb"/>
+  <text x="226" y="222" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Productivity</text>
+  <text x="226" y="237" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#64748b">Tasks completed in the last 14 days</text>
+
+  <!-- gridlines -->
+  <g stroke="#f1f5f9">
+    <line x1="226" y1="262" x2="534" y2="262"/>
+    <line x1="226" y1="290" x2="534" y2="290"/>
+    <line x1="226" y1="318" x2="534" y2="318"/>
+    <line x1="226" y1="346" x2="534" y2="346"/>
+  </g>
+  <text x="222" y="265" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="#94a3b8" text-anchor="end">4</text>
+  <text x="222" y="293" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="#94a3b8" text-anchor="end">3</text>
+  <text x="222" y="321" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="#94a3b8" text-anchor="end">2</text>
+  <text x="222" y="349" font-family="'Segoe UI',Arial,sans-serif" font-size="8" fill="#94a3b8" text-anchor="end">1</text>
+
+  <!-- Bars: heights match screenshot (2,1,2,4,3,3,3,2,1,1,4,4,...) -->
+  <g fill="url(#tfBar)">
+    <rect x="232" y="318" width="14" height="56" rx="2"/>
+    <rect x="254" y="346" width="14" height="28" rx="2"/>
+    <rect x="276" y="318" width="14" height="56" rx="2"/>
+    <rect x="298" y="262" width="14" height="112" rx="2"/>
+    <rect x="320" y="318" width="14" height="56" rx="2"/>
+    <rect x="342" y="290" width="14" height="84" rx="2"/>
+    <rect x="364" y="290" width="14" height="84" rx="2"/>
+    <rect x="386" y="290" width="14" height="84" rx="2"/>
+    <rect x="408" y="318" width="14" height="56" rx="2"/>
+    <rect x="430" y="346" width="14" height="28" rx="2"/>
+    <rect x="452" y="346" width="14" height="28" rx="2"/>
+    <rect x="474" y="262" width="14" height="112" rx="2"/>
+    <rect x="496" y="262" width="14" height="112" rx="2"/>
+    <rect x="518" y="346" width="14" height="28" rx="2"/>
+  </g>
+  <line x1="226" y1="374" x2="534" y2="374" stroke="#e5e7eb"/>
+  <text x="280" y="388" font-family="'Segoe UI',Arial,sans-serif" font-size="7" fill="#94a3b8">Apr 13   Apr 16   Apr 19   Apr 22   Apr 25</text>
+
+  <!-- ===== DEADLINES ===== -->
+  <rect x="558" y="200" width="234" height="200" rx="10" fill="white" stroke="#e5e7eb"/>
+  <text x="572" y="222" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Upcoming Deadlines</text>
+  <text x="572" y="237" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#64748b">Tasks due within the next 7 days</text>
+
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <text x="572" y="262" font-size="10" font-weight="600" fill="#0f172a">Refactor form-builder utils</text>
+    <rect x="572" y="268" width="46" height="13" rx="3" fill="#fef3c7"/>
+    <text x="595" y="277" font-size="8" font-weight="700" fill="#b45309" text-anchor="middle">MEDIUM</text>
+    <text x="624" y="277" font-size="9" fill="#64748b">in 3 days</text>
+
+    <text x="572" y="302" font-size="10" font-weight="600" fill="#0f172a">Wire up real OpenWeatherMap API</text>
+    <rect x="572" y="308" width="34" height="13" rx="3" fill="#fee2e2"/>
+    <text x="589" y="317" font-size="8" font-weight="700" fill="#b91c1c" text-anchor="middle">HIGH</text>
+    <text x="612" y="317" font-size="9" fill="#64748b">in 3 days</text>
+
+    <text x="572" y="342" font-size="10" font-weight="600" fill="#0f172a">Optimize FFMS production bundle</text>
+    <rect x="572" y="348" width="34" height="13" rx="3" fill="#fee2e2"/>
+    <text x="589" y="357" font-size="8" font-weight="700" fill="#b91c1c" text-anchor="middle">HIGH</text>
+    <text x="612" y="357" font-size="9" fill="#64748b">in 5 days</text>
+
+    <text x="572" y="382" font-size="10" font-weight="600" fill="#0f172a">Geolocation-based default city</text>
+    <rect x="572" y="388" width="46" height="13" rx="3" fill="#fef3c7"/>
+    <text x="595" y="397" font-size="8" font-weight="700" fill="#b45309" text-anchor="middle">MEDIUM</text>
+    <text x="624" y="397" font-size="9" fill="#64748b">in 5 days</text>
+  </g>
+
+  <!-- ===== QUICK ADD ===== -->
+  <rect x="210" y="416" width="582" height="74" rx="10" fill="white" stroke="#e5e7eb"/>
+  <text x="226" y="438" font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Quick Add Task</text>
+  <text x="226" y="452" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#64748b">Create a new task in seconds</text>
+  <rect x="226" y="460" width="370" height="24" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="236" y="476" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#94a3b8">Task title</text>
+  <rect x="606" y="460" width="100" height="24" rx="5" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="616" y="476" font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#475569">Priority: Med</text>
+  <rect x="716" y="460" width="62" height="24" rx="5" fill="#cbd5e1"/>
+  <text x="747" y="476" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="700" fill="#64748b" text-anchor="middle">+ Add</text>
+</svg>
